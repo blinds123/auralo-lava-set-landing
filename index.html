@@ -1386,6 +1386,185 @@
             </div>
         </section>
 
+        <!-- NEW: Instant Social Proof Ticker -->
+        <section style="padding: 40px 20px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); overflow: hidden;">
+            <div style="position: relative;">
+                <style>
+                    @keyframes scroll-left {
+                        0% { transform: translateX(100%); }
+                        100% { transform: translateX(-100%); }
+                    }
+                    .ticker-container {
+                        display: flex;
+                        animation: scroll-left 30s linear infinite;
+                    }
+                    .ticker-item {
+                        flex-shrink: 0;
+                        margin-right: 48px;
+                        padding: 16px 24px;
+                        background: white;
+                        border-radius: 100px;
+                        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    }
+                    .pulse-dot {
+                        width: 8px;
+                        height: 8px;
+                        background: #4caf50;
+                        border-radius: 50%;
+                        animation: pulse 2s infinite;
+                    }
+                    @keyframes pulse {
+                        0%, 100% { opacity: 1; transform: scale(1); }
+                        50% { opacity: 0.5; transform: scale(1.5); }
+                    }
+                </style>
+                <div class="ticker-container">
+                    <div class="ticker-item">
+                        <div class="pulse-dot"></div>
+                        <span><strong>Emma</strong> just saved €1,111 • 2 min ago</span>
+                    </div>
+                    <div class="ticker-item">
+                        <div class="pulse-dot"></div>
+                        <span><strong>Size 38</strong> only 12 left • High demand</span>
+                    </div>
+                    <div class="ticker-item">
+                        <div class="pulse-dot"></div>
+                        <span><strong>Sarah</strong> bought 2 sets • 5 min ago</span>
+                    </div>
+                    <div class="ticker-item">
+                        <div class="pulse-dot"></div>
+                        <span><strong>15.7M views</strong> on TikTok • Viral</span>
+                    </div>
+                    <div class="ticker-item">
+                        <div class="pulse-dot"></div>
+                        <span><strong>Olivia</strong> left 5★ review • "Perfect fit!"</span>
+                    </div>
+                    <div class="ticker-item">
+                        <div class="pulse-dot"></div>
+                        <span><strong>2,847 sold</strong> this week • Record sales</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: TikTok Cold Audience Hook Section -->
+        <section style="padding: 80px 20px; background: #000; color: white; position: relative; overflow: hidden;">
+            <style>
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-20px); }
+                }
+                .float-animation {
+                    animation: float 3s ease-in-out infinite;
+                }
+                @keyframes gradient {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+            </style>
+            
+            <!-- Background gradient animation -->
+            <div style="position: absolute; inset: 0; background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c); background-size: 400% 400%; animation: gradient 15s ease infinite; opacity: 0.3;"></div>
+            
+            <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <div style="display: inline-block; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 100px; padding: 8px 24px; margin-bottom: 24px;">
+                        <span style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">From Your FYP to Your Closet</span>
+                    </div>
+                    <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 24px; line-height: 1.2;">
+                        The Exact Set Everyone's<br>
+                        <span style="background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Gatekeeping on TikTok</span>
+                    </h2>
+                    <p style="font-size: 20px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                        POV: You found the €1,140 designer set for $29 before it sells out (again)
+                    </p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px;">
+                    <!-- Viral Moment 1 -->
+                    <div class="float-animation" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 32px; text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">👖</div>
+                        <h3 style="font-size: 24px; margin-bottom: 12px;">No Waist Gap</h3>
+                        <p style="opacity: 0.8;">The test that made 2.3M girls add to cart instantly</p>
+                    </div>
+                    
+                    <!-- Viral Moment 2 -->
+                    <div class="float-animation" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 32px; text-align: center; animation-delay: 0.5s;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">⚡</div>
+                        <h3 style="font-size: 24px; margin-bottom: 12px;">48-Hour Ship</h3>
+                        <p style="opacity: 0.8;">Faster than New Arrivals' 5-day wait</p>
+                    </div>
+                    
+                    <!-- Viral Moment 3 -->
+                    <div class="float-animation" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 32px; text-align: center; animation-delay: 1s;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">⭐</div>
+                        <h3 style="font-size: 24px; margin-bottom: 12px;">5-Star Average</h3>
+                        <p style="opacity: 0.8;">2,847 reviews can't be wrong</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button onclick="document.querySelector('.buy-now-button').click()" style="background: linear-gradient(135deg, #ff6b6b, #ff8e53); color: white; border: none; padding: 20px 48px; font-size: 18px; font-weight: 700; border-radius: 100px; cursor: pointer; transform: scale(1); transition: all 0.3s; box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);">
+                        GET YOUR SET BEFORE IT'S GONE
+                    </button>
+                    <p style="margin-top: 16px; opacity: 0.7; font-size: 14px;">
+                        ⚡ Size 38 & 40 selling fastest • Only 47 sets left
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: POV TikTok Hooks Gallery -->
+        <section style="padding: 60px 20px; background: linear-gradient(135deg, #fff 0%, #fafafa 100%);">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 16px;">
+                    POV: You're About to Save €800
+                </h2>
+                <p style="font-size: 18px; color: #666; text-align: center; margin-bottom: 48px;">
+                    The viral TikTok moments that made everyone switch
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    <!-- POV Card 1 -->
+                    <div style="background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(0); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div style="background: linear-gradient(135deg, #ff6b6b, #ff8e53); padding: 12px; border-radius: 12px; margin-bottom: 16px;">
+                            <p style="color: white; font-weight: 700; font-size: 18px; margin: 0;">POV: You didn't spend €800</p>
+                        </div>
+                        <p style="font-size: 16px; line-height: 1.6; color: #333;">This exact set costs €1,140 at New Arrivals. You're getting it for $29. Your bank account is thanking you.</p>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee;">
+                            <span style="color: #ff6b6b; font-weight: 600;">💰 Saved: €1,111</span>
+                        </div>
+                    </div>
+
+                    <!-- POV Card 2 -->
+                    <div style="background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(0); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 12px; border-radius: 12px; margin-bottom: 16px;">
+                            <p style="color: white; font-weight: 700; font-size: 18px; margin: 0;">POV: Size 38 selling out</p>
+                        </div>
+                        <p style="font-size: 16px; line-height: 1.6; color: #333;">€1,140 saved in your account instead of their pockets. Smart girls know where to shop.</p>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee;">
+                            <span style="color: #667eea; font-weight: 600;">⏰ Only 47 left</span>
+                        </div>
+                    </div>
+
+                    <!-- POV Card 3 -->
+                    <div style="background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(0); transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div style="background: linear-gradient(135deg, #f093fb, #f5576c); padding: 12px; border-radius: 12px; margin-bottom: 16px;">
+                            <p style="color: white; font-weight: 700; font-size: 18px; margin: 0;">POV: Spot the difference</p>
+                        </div>
+                        <p style="font-size: 16px; line-height: 1.6; color: #333;">One's €1,140, one's $29 - you can't tell which. Same energy, smarter money.</p>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee;">
+                            <span style="color: #f5576c; font-weight: 600;">🔥 97% OFF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- REVIEWS CAROUSEL SECTION -->
         <section class="story-section">
             <h2 class="section-title">What People Are Saying on TikTok</h2>
