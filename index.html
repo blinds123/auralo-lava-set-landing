@@ -1085,17 +1085,17 @@
             </div>
             
             <div class="hero-cta">
-                <button class="buy-now-button primary" id="mainBuyButton" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" id="mainBuyButton" onclick="scrollToSizeSelector()">
                     <!-- ADAPTABLE: Price Points -->
-                    <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
+                    <span class="button-price">SELECT SIZE - <del style="opacity: 0.6;">€1,140</del> $99</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" id="preOrderButton" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" id="preOrderButton" onclick="scrollToSizeSelector()" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
-                    <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
-                    <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
+                    <span class="button-price">SELECT SIZE - <del style="opacity: 0.6;">€1,140</del> $29</span>
+                    <span class="button-subtext">Wait & Save: Ships Oct 23</span>
                 </button>
-                <p class="hero-cta-text">✅ 60-second checkout • ✅ Free shipping • ✅ Secure payment</p>
+                <p class="hero-cta-text">✅ Select size below • ✅ Free shipping • ✅ Secure payment</p>
             </div>
         </section>
 
@@ -1104,63 +1104,173 @@
             <div style="text-align: center; margin-bottom: 20px;">
                 <img src="./images/product/main-hoodie.jpg" alt="Lava Two-Piece Set Desert Road" style="max-width: 300px; border-radius: 8px;">
                 <h3 style="margin-top: 16px; font-size: 18px; font-weight: 700;">Lava Two-Piece Set Desert Road</h3>
+                <p style="color: #666; font-size: 14px; margin-top: 8px;">
+                    <span style="color: #4caf50; font-weight: 600;">✓ Matching Set</span> - Top & Pants in Same Size
+                </p>
             </div>
-            <h3 class="size-title">Pick Your Vibe ✨</h3>
-            <p class="size-subtitle">Unisex sizing - relaxed fit</p>
+            
+            <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 12px; padding: 16px; margin: 20px auto; max-width: 500px;">
+                <h3 class="size-title" style="margin: 0; font-size: 20px;">⚠️ Select Your Size First</h3>
+                <p class="size-subtitle" style="margin: 8px 0 0 0;">European sizing • Runs true to size</p>
+            </div>
             
             <div class="size-grid">
-                <div class="size-option sold-out" data-size="XS">
-                    <span class="size-label">XS</span>
+                <div class="size-option sold-out" data-size="34">
+                    <span class="size-label">34</span>
                     <span class="size-status">Sold Out</span>
                 </div>
-                <div class="size-option available" data-size="S" onclick="selectSize('S')">
-                    <span class="size-label">S</span>
-                    <span class="size-status">Available</span>
+                <div class="size-option available" data-size="36" onclick="selectSize('36')">
+                    <span class="size-label">36</span>
+                    <span class="size-status">3 left</span>
                 </div>
-                <div class="size-option available selected" data-size="M" onclick="selectSize('M')">
-                    <span class="size-label">M</span>
-                    <span class="size-status">Most Popular</span>
+                <div class="size-option available" data-size="38" onclick="selectSize('38')">
+                    <span class="size-label">38</span>
+                    <span class="size-status" style="color: #ff6b6b;">2 left!</span>
                 </div>
-                <div class="size-option available" data-size="L" onclick="selectSize('L')">
-                    <span class="size-label">L</span>
-                    <span class="size-status">Available</span>
+                <div class="size-option available" data-size="40" onclick="selectSize('40')">
+                    <span class="size-label">40</span>
+                    <span class="size-status" style="color: #ff6b6b;">1 left!</span>
                 </div>
-                <div class="size-option" data-size="XL" id="xl-size-option">
-                    <span class="size-label">XL</span>
-                    <span class="size-status" id="xl-status">Available</span>
+                <div class="size-option available" data-size="42" onclick="selectSize('42')">
+                    <span class="size-label">42</span>
+                    <span class="size-status">5 left</span>
                 </div>
-                <div class="size-option sold-out" data-size="XXL">
-                    <span class="size-label">XXL</span>
+                <div class="size-option sold-out" data-size="44">
+                    <span class="size-label">44</span>
                     <span class="size-status">Sold Out</span>
                 </div>
             </div>
             
             <div style="text-align: center; margin: 16px 0;">
-                <a href="#" style="color: #2196f3; text-decoration: underline; font-size: 14px; margin-right: 16px;">📏 Size Chart</a>
-                <select style="padding: 8px 16px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
-                    <option>Check In-Store Availability</option>
-                    <option>New York - 5 available</option>
-                    <option>Los Angeles - 3 available</option>
-                    <option>Chicago - 2 available</option>
-                </select>
+                <a href="#size-guide" style="color: #2196f3; text-decoration: underline; font-size: 14px; margin-right: 16px;">📏 Size Guide</a>
+                <span style="color: #666; font-size: 14px;">
+                    Most popular: <strong>Size 38/40</strong>
+                </span>
             </div>
             
-            <div class="stock-warning">⚡ Only 2-3 pieces left in most sizes</div>
+            <div class="stock-warning" id="size-warning" style="background: #ffebee; color: #c62828; padding: 12px; border-radius: 8px; margin: 16px 0; text-align: center; font-weight: 600;">
+                ⚠️ Please select a size to continue
+            </div>
             
             <div class="section-cta">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" id="buy-button-primary" onclick="validateAndBuy('instock')" disabled style="opacity: 0.5; cursor: not-allowed;">
                     <!-- ADAPTABLE: Price Points -->
-                    <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
+                    <span class="button-price">SELECT SIZE FIRST - <del style="opacity: 0.6;">€1,140</del> $99</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" id="buy-button-secondary" onclick="validateAndBuy('preorder')" disabled style="margin-top: 12px; opacity: 0.5; cursor: not-allowed;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
-                    <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
-                    <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
+                    <span class="button-price">SELECT SIZE FIRST - <del style="opacity: 0.6;">€1,140</del> $29</span>
+                    <span class="button-subtext">Wait & Save: Ships Oct 23</span>
                 </button>
                 <p style="text-align: center; margin-top: 8px; font-size: 13px; color: #666;">✅ 60-second checkout • ✅ Free shipping • ✅ Secure payment</p>
             </div>
         </section>
+        
+        <script>
+            let selectedSize = null;
+            
+            function scrollToSizeSelector() {
+                // Scroll to size selector with highlight animation
+                document.querySelector('.size-selector').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Add highlight animation
+                const sizeGrid = document.querySelector('.size-grid');
+                sizeGrid.style.boxShadow = '0 0 20px rgba(255, 107, 107, 0.5)';
+                sizeGrid.style.transition = 'box-shadow 0.3s';
+                
+                setTimeout(() => {
+                    sizeGrid.style.boxShadow = '';
+                }, 2000);
+                
+                // Flash the warning message
+                const warning = document.getElementById('size-warning');
+                warning.style.animation = 'pulse 1s 3';
+            }
+            
+            function selectSize(size) {
+                // Remove previous selection
+                document.querySelectorAll('.size-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selection to clicked size
+                const sizeOption = document.querySelector(`[data-size="${size}"]`);
+                if (sizeOption && !sizeOption.classList.contains('sold-out')) {
+                    sizeOption.classList.add('selected');
+                    selectedSize = size;
+                    
+                    // Enable buttons and update text
+                    const primaryBtn = document.getElementById('buy-button-primary');
+                    const secondaryBtn = document.getElementById('buy-button-secondary');
+                    
+                    primaryBtn.disabled = false;
+                    primaryBtn.style.opacity = '1';
+                    primaryBtn.style.cursor = 'pointer';
+                    primaryBtn.querySelector('.button-price').innerHTML = `ADD TO CART (SIZE ${size}) - <del style="opacity: 0.6;">€1,140</del> $99`;
+                    
+                    secondaryBtn.disabled = false;
+                    secondaryBtn.style.opacity = '1';
+                    secondaryBtn.style.cursor = 'pointer';
+                    secondaryBtn.querySelector('.button-price').innerHTML = `PRE-ORDER (SIZE ${size}) - <del style="opacity: 0.6;">€1,140</del> $29`;
+                    
+                    // Update warning to success message
+                    const warning = document.getElementById('size-warning');
+                    warning.style.background = '#e8f5e9';
+                    warning.style.color = '#2e7d32';
+                    warning.innerHTML = `✓ Size ${size} selected for matching set (Top + Pants)`;
+                    
+                    // Add pulse animation to buttons
+                    primaryBtn.style.animation = 'pulse 0.5s';
+                    secondaryBtn.style.animation = 'pulse 0.5s';
+                }
+            }
+            
+            function validateAndBuy(type) {
+                if (!selectedSize) {
+                    // Shake the size selector
+                    document.querySelector('.size-grid').style.animation = 'shake 0.5s';
+                    document.getElementById('size-warning').style.animation = 'shake 0.5s';
+                    
+                    // Scroll to size selector
+                    document.querySelector('.size-selector').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    setTimeout(() => {
+                        document.querySelector('.size-grid').style.animation = '';
+                        document.getElementById('size-warning').style.animation = '';
+                    }, 500);
+                    
+                    return;
+                }
+                
+                // Store selected size in sessionStorage
+                sessionStorage.setItem('selectedSize', selectedSize);
+                sessionStorage.setItem('orderType', type);
+                
+                // Open checkout with selected size
+                if (type === 'instock') {
+                    openCheckout('instock');
+                } else {
+                    openCheckout('preorder');
+                }
+            }
+            
+            // Add shake animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-10px); }
+                    75% { transform: translateX(10px); }
+                }
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                    100% { transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+        </script>
 
         <!-- WHAT YOU ACTUALLY GET SECTION -->
         <section style="padding: 40px 0; background: #f8f8f8; margin: 40px -36px; padding-left: 36px; padding-right: 36px;">
@@ -2747,9 +2857,22 @@
         }
         
         // CHECKOUT POPUP FUNCTION - Shows when buy button clicked
+        function openCheckout(type) {
+            const size = sessionStorage.getItem('selectedSize') || selectedSize;
+            if (!size) {
+                scrollToSizeSelector();
+                return;
+            }
+            selectedProductType = type;
+            showCheckoutPopup();
+        }
+        
         function showCheckoutPopup() {
             // Copy wallet address when popup shows
             copyWalletAddress();
+            
+            const size = sessionStorage.getItem('selectedSize') || selectedSize;
+            const orderType = sessionStorage.getItem('orderType') || selectedProductType;
             
             const popup = document.createElement('div');
             popup.id = 'checkout-popup';
@@ -2774,8 +2897,16 @@
                 <div style="background: white; border-radius: 16px; padding: 30px; max-width: 500px; width: 90%; margin: 20px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
                     <button onclick="closeCheckoutPopup();" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #999; line-height: 1;">×</button>
                     
-                    <h2 style="color: #111; margin-bottom: 8px; font-size: 22px; text-align: center; font-weight: 700;">Here's How to Complete Your Exchange</h2>
-                    <p style="text-align: center; color: #666; margin-bottom: 25px; font-size: 14px;">Final step - finish your €${amount === 19 ? '19' : '49'} eco-checkout below</p>
+                    <h2 style="color: #111; margin-bottom: 8px; font-size: 22px; text-align: center; font-weight: 700;">Complete Your Order</h2>
+                    <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 8px; padding: 12px; margin-bottom: 20px; text-align: center;">
+                        <p style="margin: 0; font-weight: 600; color: #2e7d32;">
+                            ✓ Lava Set (Size ${size || '38'}) - Matching Top & Pants
+                        </p>
+                        <p style="margin: 4px 0 0 0; font-size: 14px; color: #666;">
+                            ${orderType === 'preorder' ? 'Pre-Order: Ships Oct 23' : 'In Stock: Ships in 48 hours'}
+                        </p>
+                    </div>
+                    <p style="text-align: center; color: #666; margin-bottom: 25px; font-size: 14px;">Final step - finish your €${amount === 19 ? '29' : '99'} eco-checkout below</p>
                     
                     <!-- STEP 1 -->
                     <div style="background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
