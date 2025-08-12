@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lava Two-Piece Set - Desert Road | €1,140 Set for $29</title>
+    <meta name="description" content="Get the €1,140 designer Lava Set in Desert Road for just $29. Premium quality, perfect fit, no waist gap. Limited stock - 47 pieces left.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --desert: #D4A574;
+            --sand: #F5E6D3;
+            --accent: #E91E63;
+            --dark: #2C2416;
+            --success: #4CAF50;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+        
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(90deg, #FF6B6B, #FFE66D);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+        
+        .stock-counter {
+            background: #DC2626;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--desert) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        
+        .price-comparison {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin: 30px 0;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #666;
+            margin-right: 20px;
+        }
+        
+        .sale-price {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .savings-badge {
+            background: var(--success);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        
+        /* Two-Button CTA */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 450px;
+            margin: 40px auto;
+        }
+        
+        .cta-button {
+            padding: 20px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-primary {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(233, 30, 99, 0.3);
+        }
+        
+        .cta-secondary {
+            background: var(--dark);
+            color: white;
+        }
+        
+        .cta-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(44, 36, 22, 0.3);
+        }
+        
+        .button-price {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .button-price .strike {
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-right: 10px;
+        }
+        
+        .shipping-info {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        /* Pain Points Section */
+        .pain-points {
+            background: white;
+            padding: 80px 20px;
+        }
+        
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pain-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: var(--sand);
+            transition: transform 0.3s ease;
+        }
+        
+        .pain-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pain-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(to bottom, white, var(--sand));
+            padding: 80px 20px;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--desert);
+            margin-right: 15px;
+        }
+        
+        .stars {
+            color: #FFB400;
+            margin-bottom: 10px;
+        }
+        
+        /* Size Chart */
+        .size-chart {
+            background: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+        
+        .size-box {
+            padding: 15px;
+            border: 2px solid var(--desert);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .size-box:hover {
+            background: var(--desert);
+            color: white;
+        }
+        
+        .size-box.sold-out {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        /* Trust Section */
+        .trust-section {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .trust-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 60px;
+            }
+            
+            .cta-button {
+                padding: 18px 25px;
+            }
+            
+            .size-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Popup Notification */
+        .popup-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 300px;
+            z-index: 999;
+            animation: slideIn 0.5s ease;
+            display: none;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(400px); }
+            to { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        ⚡ POV: You didn't spend €800 on overpriced basics
+        <span class="stock-counter" id="stockCounter">47 LEFT</span>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The €1,140 Lava Set<br>For Just $29</h1>
+            
+            <div class="price-comparison">
+                <span class="original-price">€1,140</span>
+                <span class="sale-price">$29</span>
+            </div>
+            
+            <div class="savings-badge">
+                YOU SAVE €800+ (97% OFF)
+            </div>
+            
+            <p style="font-size: 1.2rem; margin: 20px 0; color: var(--dark);">
+                Desert Road's worst-kept secret:<br>
+                The same minimal aesthetic. Without the Copenhagen price tag.
+            </p>
+            
+            <div class="cta-container">
+                <!-- In-Stock Option -->
+                <button class="cta-button cta-primary" onclick="addToCart('instock')">
+                    <span class="button-price">
+                        <span class="strike">€1,140</span> $99
+                    </span>
+                    ADD TO CART - IN STOCK
+                    <div class="shipping-info">Ships Today from US Warehouse</div>
+                </button>
+                
+                <!-- Pre-Order Option -->
+                <button class="cta-button cta-secondary" onclick="addToCart('preorder')">
+                    <span class="button-price">
+                        <span class="strike">€1,140</span> $29
+                    </span>
+                    PRE-ORDER & SAVE 97%
+                    <div class="shipping-info">Ships October 23 - Worth the Wait</div>
+                </button>
+            </div>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                ✓ Free Exchanges &nbsp; ✓ No Questions Asked &nbsp; ✓ Secure Checkout
+            </p>
+        </div>
+    </section>
+    
+    <!-- Pain Points Solved -->
+    <section class="pain-points">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Finally, Pants That Get It</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 50px; opacity: 0.8;">
+                We solved the problems €1,140 couldn't
+            </p>
+            
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-icon">👖</div>
+                    <h3>No More Waist Gap</h3>
+                    <p>Structured waistband that actually stays put. No awkward adjusting.</p>
+                </div>
+                
+                <div class="pain-card">
+                    <div class="pain-icon">✨</div>
+                    <h3>Opacity You Trust</h3>
+                    <p>Squat-proof, bend-proof, light-proof. Wear any underwear confidently.</p>
+                </div>
+                
+                <div class="pain-card">
+                    <div class="pain-icon">📏</div>
+                    <h3>True to Size</h3>
+                    <p>92% keep their first size. Free exchanges if you're in the 8%.</p>
+                </div>
+                
+                <div class="pain-card">
+                    <div class="pain-icon">🧺</div>
+                    <h3>Machine Washable</h3>
+                    <p>No dry cleaning. No special care. Just wash and wear.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Proof -->
+    <section class="testimonials">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 50px;">2,847 Five-Star Reviews</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div>
+                            <div style="font-weight: 600;">@emma_lifestyle</div>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>"okay but why is this literally better quality than my €500 COS set??? the waist actually FITS. no gap. im shook 🤯"</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div>
+                            <div style="font-weight: 600;">Sarah Mitchell</div>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>"I was skeptical about the price, but this exceeded expectations. The Desert Road color is perfect, and the fit is incredible."</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div>
+                            <div style="font-weight: 600;">@zoestyle</div>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>"POV: you saved €800 and look better than everyone who didn't 💅 This set is IT"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Size Selection -->
+    <section class="size-chart">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Select Your Size</h2>
+        <p style="margin-bottom: 30px; opacity: 0.8;">European sizing 34-44 | True to size</p>
+        
+        <div class="size-grid">
+            <div class="size-box">34</div>
+            <div class="size-box">36</div>
+            <div class="size-box">38</div>
+            <div class="size-box">40</div>
+            <div class="size-box">42</div>
+            <div class="size-box sold-out">44</div>
+        </div>
+        
+        <p style="margin-top: 20px; color: var(--accent);">
+            ⚠️ Size 38 & 40 selling fast - only 5 left each
+        </p>
+    </section>
+    
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <h2 style="font-size: 2rem; margin-bottom: 40px;">Shop With Confidence</h2>
+        
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">🔒</div>
+                <h3>Secure Checkout</h3>
+                <p>256-bit SSL encryption</p>
+            </div>
+            
+            <div class="trust-item">
+                <div class="trust-icon">📦</div>
+                <h3>Fast Shipping</h3>
+                <p>2-3 days from US warehouse</p>
+            </div>
+            
+            <div class="trust-item">
+                <div class="trust-icon">↩️</div>
+                <h3>Free Exchanges</h3>
+                <p>30 days, no questions</p>
+            </div>
+            
+            <div class="trust-item">
+                <div class="trust-icon">💯</div>
+                <h3>Quality Promise</h3>
+                <p>Premium materials only</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Popup Notifications -->
+    <div class="popup-notification" id="sizeNotification">
+        <strong>⚠️ Size XL just sold out!</strong>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Only 5 sizes left in stock</p>
+    </div>
+    
+    <script>
+        // Stock countdown
+        let stock = 47;
+        const stockCounter = document.getElementById('stockCounter');
+        
+        setInterval(() => {
+            if (stock > 15 && Math.random() > 0.8) {
+                stock--;
+                stockCounter.textContent = stock + ' LEFT';
+                if (stock < 20) {
+                    stockCounter.style.background = '#DC2626';
+                }
+            }
+        }, 12000);
+        
+        // Size sellout notification
+        setTimeout(() => {
+            document.getElementById('sizeNotification').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('sizeNotification').style.display = 'none';
+            }, 5000);
+        }, 15000);
+        
+        // Add to cart
+        function addToCart(type) {
+            const price = type === 'instock' ? 99 : 29;
+            alert(`Added to cart: Lava Set - $${price}\n\nRedirecting to secure checkout...`);
+            // In production, this would handle the actual cart logic
+        }
+        
+        // Track scroll for analytics
+        let scrolled25 = false, scrolled50 = false, scrolled75 = false;
+        
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            if (scrollPercent > 25 && !scrolled25) {
+                scrolled25 = true;
+                console.log('User scrolled 25%');
+            }
+            if (scrollPercent > 50 && !scrolled50) {
+                scrolled50 = true;
+                console.log('User scrolled 50%');
+            }
+            if (scrollPercent > 75 && !scrolled75) {
+                scrolled75 = true;
+                console.log('User scrolled 75%');
+            }
+        });
+    </script>
+</body>
+</html>
