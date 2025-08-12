@@ -3,94 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lava Two-Piece Set - Desert Road | €1,140 Set for $29</title>
+    <title>Lava Set Desert Road - €1,140 Set for $29 | Limited Stock</title>
     <meta name="description" content="Get the €1,140 designer Lava Set in Desert Road for just $29. Premium quality, perfect fit, no waist gap. Limited stock - 47 pieces left.">
     
+    <!-- Preload critical resources -->
+    <link rel="preload" href="./images/product/main-product.jpg" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* Reset and Base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
         
         :root {
+            /* Desert Road Color Palette */
             --desert: #D4A574;
             --sand: #F5E6D3;
-            --accent: #E91E63;
-            --dark: #2C2416;
+            --accent: #2196F3;
+            --primary: #E91E63;
+            --dark: #0a0a0a;
+            --white: #ffffff;
+            --gray: #666666;
+            --light-gray: #f5f5f5;
             --success: #4CAF50;
+            --warning: #FF6B35;
+            
+            /* Typography */
+            --font-main: 'Source Code Pro', monospace;
+            --font-headline: 'Space Mono', monospace;
+            
+            /* Spacing */
+            --space-xs: 12px;
+            --space-sm: 24px;
+            --space-md: 36px;
+            --space-lg: 56px;
+            --space-xl: 80px;
+            
+            /* Shadows */
+            --shadow-subtle: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-light: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-medium: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-elevated: 0 12px 24px rgba(0,0,0,0.12);
+            --shadow-premium: 0 20px 40px rgba(33, 150, 243, 0.1);
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
+            font-family: var(--font-main);
+            background: var(--white);
             color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         
-        /* Urgency Banner */
-        .urgency-banner {
-            background: linear-gradient(90deg, #FF6B6B, #FFE66D);
-            color: white;
-            padding: 12px;
-            text-align: center;
-            font-weight: 600;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
-        }
-        
-        .stock-counter {
-            background: #DC2626;
-            color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-left: 10px;
-            font-size: 14px;
+        .container {
+            max-width: 468px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
         }
         
         /* Hero Section */
         .hero {
-            min-height: 100vh;
             background: linear-gradient(135deg, var(--sand) 0%, var(--desert) 100%);
+            padding: var(--space-xl) 0;
+            text-align: center;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 80px 20px 40px;
-            text-align: center;
         }
         
-        .hero-content {
-            max-width: 800px;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: 20px;
-            color: var(--dark);
+        .main-headline {
+            font-family: var(--font-headline);
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
             line-height: 1.1;
+            margin-bottom: var(--space-sm);
+            color: var(--dark);
         }
         
-        .price-comparison {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            margin: 30px 0;
+        .subheadline {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: var(--space-md);
+        }
+        
+        .price-display {
+            font-size: 2rem;
+            margin: var(--space-md) 0;
         }
         
         .original-price {
             text-decoration: line-through;
-            color: #666;
-            margin-right: 20px;
+            color: var(--gray);
+            margin-right: 15px;
         }
         
         .sale-price {
-            color: var(--accent);
+            color: var(--primary);
             font-weight: 700;
         }
         
@@ -100,49 +114,128 @@
             padding: 8px 16px;
             border-radius: 25px;
             display: inline-block;
-            margin: 20px 0;
+            margin: var(--space-sm) 0;
             font-weight: 600;
         }
         
-        /* Two-Button CTA */
-        .cta-container {
+        /* Product Image */
+        .product-showcase {
+            padding: var(--space-xl) 0;
+        }
+        
+        .product-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Size Selection */
+        .size-selection {
+            padding: var(--space-lg) 0;
+            background: var(--light-gray);
+        }
+        
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 10px;
+            max-width: 400px;
+            margin: var(--space-md) auto;
+        }
+        
+        .size-option {
+            padding: 15px;
+            border: 2px solid var(--desert);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 600;
+        }
+        
+        .size-option:hover:not(.sold-out) {
+            background: var(--desert);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .size-option.selected {
+            background: var(--desert);
+            color: white;
+        }
+        
+        .size-option.sold-out {
+            opacity: 0.3;
+            cursor: not-allowed;
+            position: relative;
+        }
+        
+        .size-option.sold-out::after {
+            content: 'SOLD OUT';
+            position: absolute;
+            font-size: 9px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            color: red;
+            font-weight: 700;
+        }
+        
+        /* CTA Buttons */
+        .cta-section {
+            padding: var(--space-lg) 0;
+            background: white;
+        }
+        
+        .two-tier-buttons {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            max-width: 450px;
-            margin: 40px auto;
+            max-width: 400px;
+            margin: 0 auto;
         }
         
-        .cta-button {
+        .buy-now-button {
             padding: 20px 30px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
         }
         
-        .cta-primary {
-            background: var(--accent);
+        .buy-now-button.primary {
+            background: var(--primary);
             color: white;
         }
         
-        .cta-primary:hover {
+        .buy-now-button.primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(233, 30, 99, 0.3);
         }
         
-        .cta-secondary {
+        .buy-now-button.secondary {
             background: var(--dark);
             color: white;
         }
         
-        .cta-secondary:hover {
+        .buy-now-button.secondary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(44, 36, 22, 0.3);
+            box-shadow: 0 15px 30px rgba(10, 10, 10, 0.3);
         }
         
         .button-price {
@@ -161,188 +254,417 @@
             font-size: 0.85rem;
             opacity: 0.9;
             margin-top: 5px;
-        }
-        
-        /* Pain Points Section */
-        .pain-points {
-            background: white;
-            padding: 80px 20px;
-        }
-        
-        .pain-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .pain-card {
-            text-align: center;
-            padding: 30px;
-            border-radius: 10px;
-            background: var(--sand);
-            transition: transform 0.3s ease;
-        }
-        
-        .pain-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .pain-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-weight: 400;
+            text-transform: none;
         }
         
         /* Testimonials */
         .testimonials {
-            background: linear-gradient(to bottom, white, var(--sand));
-            padding: 80px 20px;
+            padding: var(--space-xl) 0;
+            background: var(--light-gray);
         }
         
-        .testimonial-grid {
+        .section-title {
+            font-family: var(--font-headline);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .review-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 40px auto;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .testimonial-card {
+        .review-card {
             background: white;
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-light);
         }
         
-        .testimonial-header {
+        .review-header {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
         }
         
-        .testimonial-avatar {
+        .review-avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: var(--desert);
             margin-right: 15px;
+            object-fit: cover;
         }
         
-        .stars {
+        .review-meta {
+            flex: 1;
+        }
+        
+        .review-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .review-stars {
             color: #FFB400;
-            margin-bottom: 10px;
         }
         
-        /* Size Chart */
-        .size-chart {
+        .review-text {
+            line-height: 1.6;
+            color: var(--gray);
+        }
+        
+        /* Story Carousel */
+        .story-section {
+            padding: var(--space-xl) 0;
             background: white;
-            padding: 60px 20px;
-            text-align: center;
         }
         
-        .size-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
+        .story-carousel {
+            position: relative;
             max-width: 600px;
-            margin: 30px auto;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
         }
         
-        .size-box {
-            padding: 15px;
-            border: 2px solid var(--desert);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .story-slides {
+            display: flex;
+            transition: transform 0.5s ease;
         }
         
-        .size-box:hover {
-            background: var(--desert);
+        .story-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .story-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
             color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
         }
         
-        .size-box.sold-out {
-            opacity: 0.3;
-            cursor: not-allowed;
+        .carousel-nav-left {
+            left: 10px;
+        }
+        
+        .carousel-nav-right {
+            right: 10px;
         }
         
         /* Trust Section */
         .trust-section {
+            padding: var(--space-xl) 0;
             background: var(--dark);
             color: white;
-            padding: 60px 20px;
             text-align: center;
         }
         
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 800px;
-            margin: 40px auto;
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: var(--space-md);
+            flex-wrap: wrap;
         }
         
-        .trust-item {
+        .trust-badge {
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 10px;
         }
         
         .trust-icon {
             font-size: 2.5rem;
+        }
+        
+        /* Checkout Modal */
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .checkout-modal.active {
+            display: flex;
+        }
+        
+        .checkout-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .checkout-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .checkout-title {
+            font-family: var(--font-headline);
+            font-size: 1.8rem;
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+        
+        .checkout-step {
+            margin-bottom: var(--space-md);
+            padding: 20px;
+            background: var(--light-gray);
+            border-radius: 12px;
+        }
+        
+        .step-number {
+            background: var(--accent);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: 700;
+        }
+        
+        .wallet-address {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            cursor: pointer;
+            border: 2px solid var(--accent);
+        }
+        
+        .copy-button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .copy-button.copied {
+            background: var(--success);
+        }
+        
+        .simpleswap-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px 32px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .simpleswap-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.3);
+        }
+        
+        /* XL Popup */
+        .xl-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+        }
+        
+        .xl-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-elevated);
+            z-index: 10000;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .xl-popup.active,
+        .xl-popup-overlay.active {
+            display: block;
+        }
+        
+        .xl-popup-icon {
+            font-size: 3rem;
             margin-bottom: 15px;
+        }
+        
+        .xl-popup-message {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .xl-popup-submessage {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .xl-popup-close {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Stock Counter */
+        .stock-warning {
+            background: linear-gradient(90deg, #FF6B6B, #FFE66D);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .stock-counter {
+            background: #DC2626;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: 10px;
+            font-size: 14px;
         }
         
         /* Mobile Optimization */
         @media (max-width: 768px) {
-            .hero {
-                padding-top: 60px;
+            .container {
+                padding: 0 20px;
             }
             
-            .cta-button {
-                padding: 18px 25px;
+            .main-headline {
+                font-size: 2rem;
             }
             
             .size-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            
+            .trust-badges {
+                gap: 20px;
+            }
+            
+            .checkout-content {
+                padding: 30px 20px;
+            }
         }
         
-        /* Popup Notification */
-        .popup-notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-width: 300px;
-            z-index: 999;
-            animation: slideIn 0.5s ease;
-            display: none;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        @keyframes slideIn {
-            from { transform: translateX(400px); }
-            to { transform: translateX(0); }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
 <body>
-    <!-- Urgency Banner -->
-    <div class="urgency-banner">
+    <!-- Stock Warning Banner -->
+    <div class="stock-warning">
         ⚡ POV: You didn't spend €800 on overpriced basics
         <span class="stock-counter" id="stockCounter">47 LEFT</span>
     </div>
     
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>The €1,140 Lava Set<br>For Just $29</h1>
+        <div class="container">
+            <h1 class="main-headline">The €1,140 Lava Set<br>For Just $29</h1>
+            <p class="subheadline">Desert Road's worst-kept secret</p>
             
-            <div class="price-comparison">
+            <div class="price-display">
                 <span class="original-price">€1,140</span>
                 <span class="sale-price">$29</span>
             </div>
@@ -351,14 +673,49 @@
                 YOU SAVE €800+ (97% OFF)
             </div>
             
-            <p style="font-size: 1.2rem; margin: 20px 0; color: var(--dark);">
-                Desert Road's worst-kept secret:<br>
-                The same minimal aesthetic. Without the Copenhagen price tag.
+            <p style="margin: 20px 0; font-size: 1.1rem;">
+                Same minimal aesthetic. Without the Copenhagen price tag.
             </p>
+        </div>
+    </section>
+    
+    <!-- Product Showcase -->
+    <section class="product-showcase">
+        <div class="container">
+            <div class="product-image">
+                <img src="./images/product/main-product.jpg" alt="Lava Set Desert Road" 
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'600\'%3E%3Crect fill=\'%23D4A574\' width=\'600\' height=\'600\'/%3E%3Ctext fill=\'white\' font-size=\'24\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3ELava Set%3C/text%3E%3C/svg%3E'">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Size Selection -->
+    <section class="size-selection">
+        <div class="container">
+            <h2 class="section-title">Select Your Size</h2>
+            <p style="text-align: center; margin-bottom: 20px;">European sizing 34-44 | True to size</p>
             
-            <div class="cta-container">
+            <div class="size-grid">
+                <div class="size-option" data-size="34">34</div>
+                <div class="size-option" data-size="36">36</div>
+                <div class="size-option" data-size="38">38</div>
+                <div class="size-option" data-size="40">40</div>
+                <div class="size-option" data-size="42">42</div>
+                <div class="size-option sold-out" data-size="44">44</div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px; color: var(--primary);">
+                ⚠️ Size 38 & 40 selling fast - only 5 left each
+            </p>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="two-tier-buttons">
                 <!-- In-Stock Option -->
-                <button class="cta-button cta-primary" onclick="addToCart('instock')">
+                <button class="buy-now-button primary" onclick="openCheckout('instock')">
                     <span class="button-price">
                         <span class="strike">€1,140</span> $99
                     </span>
@@ -367,7 +724,7 @@
                 </button>
                 
                 <!-- Pre-Order Option -->
-                <button class="cta-button cta-secondary" onclick="addToCart('preorder')">
+                <button class="buy-now-button secondary" onclick="openCheckout('preorder')">
                     <span class="button-price">
                         <span class="strike">€1,140</span> $29
                     </span>
@@ -376,151 +733,186 @@
                 </button>
             </div>
             
-            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
-                ✓ Free Exchanges &nbsp; ✓ No Questions Asked &nbsp; ✓ Secure Checkout
+            <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--gray);">
+                ✓ Free Exchanges &nbsp; ✓ 30-Day Guarantee &nbsp; ✓ Secure Checkout
             </p>
         </div>
     </section>
     
-    <!-- Pain Points Solved -->
-    <section class="pain-points">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Finally, Pants That Get It</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 50px; opacity: 0.8;">
-                We solved the problems €1,140 couldn't
-            </p>
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <h2 class="section-title">Why This Set Exists</h2>
             
-            <div class="pain-grid">
-                <div class="pain-card">
-                    <div class="pain-icon">👖</div>
-                    <h3>No More Waist Gap</h3>
-                    <p>Structured waistband that actually stays put. No awkward adjusting.</p>
+            <div class="story-carousel">
+                <div class="story-slides" id="storySlides">
+                    <div class="story-slide">
+                        <img src="./images/story/slide-1_final_crushed_under_20kb.jpg" alt="Story slide 1"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'600\'%3E%3Crect fill=\'%23F5E6D3\' width=\'600\' height=\'600\'/%3E%3Ctext fill=\'%23D4A574\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\'%3EStory 1%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="story-slide">
+                        <img src="./images/story/slide-2_final_crushed_under_20kb.jpg" alt="Story slide 2"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'600\'%3E%3Crect fill=\'%23F5E6D3\' width=\'600\' height=\'600\'/%3E%3Ctext fill=\'%23D4A574\' font-size=\'20\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\'%3EStory 2%3C/text%3E%3C/svg%3E'">
+                    </div>
                 </div>
                 
-                <div class="pain-card">
-                    <div class="pain-icon">✨</div>
-                    <h3>Opacity You Trust</h3>
-                    <p>Squat-proof, bend-proof, light-proof. Wear any underwear confidently.</p>
-                </div>
-                
-                <div class="pain-card">
-                    <div class="pain-icon">📏</div>
-                    <h3>True to Size</h3>
-                    <p>92% keep their first size. Free exchanges if you're in the 8%.</p>
-                </div>
-                
-                <div class="pain-card">
-                    <div class="pain-icon">🧺</div>
-                    <h3>Machine Washable</h3>
-                    <p>No dry cleaning. No special care. Just wash and wear.</p>
-                </div>
+                <button class="carousel-nav carousel-nav-left" onclick="previousSlide()">‹</button>
+                <button class="carousel-nav carousel-nav-right" onclick="nextSlide()">›</button>
             </div>
         </div>
     </section>
     
-    <!-- Social Proof -->
+    <!-- Testimonials -->
     <section class="testimonials">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-            <h2 style="font-size: 2.5rem; margin-bottom: 50px;">2,847 Five-Star Reviews</h2>
+        <div class="container">
+            <h2 class="section-title">2,847 Five-Star Reviews</h2>
             
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar"></div>
-                        <div>
-                            <div style="font-weight: 600;">@emma_lifestyle</div>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="./images/reviews/tiktok/compressed_hoodie_review_Emma_black_30kb.jpg" 
+                             alt="Emma" class="review-avatar"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'%3E%3Ccircle fill=\'%23D4A574\' cx=\'25\' cy=\'25\' r=\'25\'/%3E%3C/svg%3E'">
+                        <div class="review-meta">
+                            <div class="review-name">@emma_lifestyle</div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
                         </div>
                     </div>
-                    <p>"okay but why is this literally better quality than my €500 COS set??? the waist actually FITS. no gap. im shook 🤯"</p>
+                    <p class="review-text">
+                        "okay but why is this literally better quality than my €500 COS set??? 
+                        the waist actually FITS. no gap. im shook 🤯"
+                    </p>
                 </div>
                 
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar"></div>
-                        <div>
-                            <div style="font-weight: 600;">Sarah Mitchell</div>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="./images/reviews/trustpilot/compressed_trustpilot_review_Emily_30kb.jpg" 
+                             alt="Sarah" class="review-avatar"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'%3E%3Ccircle fill=\'%23D4A574\' cx=\'25\' cy=\'25\' r=\'25\'/%3E%3C/svg%3E'">
+                        <div class="review-meta">
+                            <div class="review-name">Sarah Mitchell</div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
                         </div>
                     </div>
-                    <p>"I was skeptical about the price, but this exceeded expectations. The Desert Road color is perfect, and the fit is incredible."</p>
+                    <p class="review-text">
+                        "I was skeptical about the price, but this exceeded expectations. 
+                        The Desert Road color is perfect, and the fit is incredible. 
+                        Worth every penny."
+                    </p>
                 </div>
                 
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar"></div>
-                        <div>
-                            <div style="font-weight: 600;">@zoestyle</div>
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="./images/reviews/tiktok/compressed_hoodie_review_Sophia_30kb.jpg" 
+                             alt="Zoe" class="review-avatar"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'%3E%3Ccircle fill=\'%23D4A574\' cx=\'25\' cy=\'25\' r=\'25\'/%3E%3C/svg%3E'">
+                        <div class="review-meta">
+                            <div class="review-name">@zoestyle</div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
                         </div>
                     </div>
-                    <p>"POV: you saved €800 and look better than everyone who didn't 💅 This set is IT"</p>
+                    <p class="review-text">
+                        "POV: you saved €800 and look better than everyone who didn't 💅 
+                        This set is IT girls. Run don't walk!"
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
-    
-    <!-- Size Selection -->
-    <section class="size-chart">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Select Your Size</h2>
-        <p style="margin-bottom: 30px; opacity: 0.8;">European sizing 34-44 | True to size</p>
-        
-        <div class="size-grid">
-            <div class="size-box">34</div>
-            <div class="size-box">36</div>
-            <div class="size-box">38</div>
-            <div class="size-box">40</div>
-            <div class="size-box">42</div>
-            <div class="size-box sold-out">44</div>
-        </div>
-        
-        <p style="margin-top: 20px; color: var(--accent);">
-            ⚠️ Size 38 & 40 selling fast - only 5 left each
-        </p>
     </section>
     
     <!-- Trust Section -->
     <section class="trust-section">
-        <h2 style="font-size: 2rem; margin-bottom: 40px;">Shop With Confidence</h2>
-        
-        <div class="trust-grid">
-            <div class="trust-item">
-                <div class="trust-icon">🔒</div>
-                <h3>Secure Checkout</h3>
-                <p>256-bit SSL encryption</p>
-            </div>
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Shop With Confidence</h2>
             
-            <div class="trust-item">
-                <div class="trust-icon">📦</div>
-                <h3>Fast Shipping</h3>
-                <p>2-3 days from US warehouse</p>
-            </div>
-            
-            <div class="trust-item">
-                <div class="trust-icon">↩️</div>
-                <h3>Free Exchanges</h3>
-                <p>30 days, no questions</p>
-            </div>
-            
-            <div class="trust-item">
-                <div class="trust-icon">💯</div>
-                <h3>Quality Promise</h3>
-                <p>Premium materials only</p>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <div class="trust-icon">🔒</div>
+                    <div>Secure Checkout</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">256-bit SSL</div>
+                </div>
+                
+                <div class="trust-badge">
+                    <div class="trust-icon">📦</div>
+                    <div>Fast Shipping</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">2-3 days US</div>
+                </div>
+                
+                <div class="trust-badge">
+                    <div class="trust-icon">↩️</div>
+                    <div>Free Exchanges</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">30 days</div>
+                </div>
+                
+                <div class="trust-badge">
+                    <div class="trust-icon">💯</div>
+                    <div>Quality Promise</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">Premium only</div>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Popup Notifications -->
-    <div class="popup-notification" id="sizeNotification">
-        <strong>⚠️ Size XL just sold out!</strong>
-        <p style="margin-top: 10px; font-size: 0.9rem;">Only 5 sizes left in stock</p>
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <button class="checkout-close" onclick="closeCheckout()">×</button>
+            
+            <h2 class="checkout-title">Complete Your Order</h2>
+            
+            <div class="checkout-step">
+                <div>
+                    <span class="step-number">1</span>
+                    <strong>Copy Wallet Address</strong>
+                </div>
+                <div class="wallet-address" id="walletAddress">
+                    0xE5173e7c3089bD89cd1341b637b8e1951745ED5C
+                </div>
+                <button class="copy-button" onclick="copyWallet()">
+                    Copy Wallet Address
+                </button>
+            </div>
+            
+            <div class="checkout-step">
+                <div>
+                    <span class="step-number">2</span>
+                    <strong>Complete Payment</strong>
+                </div>
+                <p style="margin: 15px 0; color: var(--gray);">
+                    Click below to complete your secure payment through SimpleSwap
+                </p>
+            </div>
+            
+            <button class="simpleswap-button" onclick="redirectToPayment()">
+                Complete Your Exchange with SimpleSwap →
+            </button>
+            
+            <p style="text-align: center; margin-top: 20px; font-size: 0.85rem; color: var(--gray);">
+                🔒 Secure payment powered by SimpleSwap<br>
+                Your information is protected with 256-bit encryption
+            </p>
+        </div>
+    </div>
+    
+    <!-- XL Popup -->
+    <div class="xl-popup-overlay" id="xlPopupOverlay"></div>
+    <div class="xl-popup" id="xlPopup">
+        <div class="xl-popup-icon">🔥</div>
+        <div class="xl-popup-message">Size 44 Just Sold Out!</div>
+        <div class="xl-popup-submessage">Sarah from New York just bought the last 44</div>
+        <button class="xl-popup-close" onclick="closeXLPopup()">Continue Shopping</button>
     </div>
     
     <script>
+        // Selected size and type
+        let selectedSize = null;
+        let selectedType = null;
+        
         // Stock countdown
         let stock = 47;
         const stockCounter = document.getElementById('stockCounter');
         
+        // Decrease stock randomly
         setInterval(() => {
             if (stock > 15 && Math.random() > 0.8) {
                 stock--;
@@ -531,22 +923,104 @@
             }
         }, 12000);
         
-        // Size sellout notification
+        // Size selection
+        document.querySelectorAll('.size-option:not(.sold-out)').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedSize = this.dataset.size;
+            });
+        });
+        
+        // XL Sellout popup after 15 seconds
         setTimeout(() => {
-            document.getElementById('sizeNotification').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('sizeNotification').style.display = 'none';
-            }, 5000);
+            document.getElementById('xlPopupOverlay').classList.add('active');
+            document.getElementById('xlPopup').classList.add('active');
         }, 15000);
         
-        // Add to cart
-        function addToCart(type) {
-            const price = type === 'instock' ? 99 : 29;
-            alert(`Added to cart: Lava Set - $${price}\n\nRedirecting to secure checkout...`);
-            // In production, this would handle the actual cart logic
+        function closeXLPopup() {
+            document.getElementById('xlPopupOverlay').classList.remove('active');
+            document.getElementById('xlPopup').classList.remove('active');
         }
         
-        // Track scroll for analytics
+        // Checkout functions
+        function openCheckout(type) {
+            selectedType = type;
+            document.getElementById('checkoutModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Track event
+            console.log('Add to cart:', type, selectedSize);
+        }
+        
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function copyWallet() {
+            const walletAddress = document.getElementById('walletAddress').textContent;
+            navigator.clipboard.writeText(walletAddress).then(() => {
+                const button = event.target;
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = 'Copy Wallet Address';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        
+        function redirectToPayment() {
+            const price = selectedType === 'instock' ? 99 : 29;
+            const params = new URLSearchParams({
+                from: 'usd',
+                to: 'matic',
+                amount: price,
+                address: '0xE5173e7c3089bD89cd1341b637b8e1951745ED5C'
+            });
+            
+            // Open SimpleSwap in new tab
+            window.open(`https://simpleswap.io/exchange?${params}`, '_blank');
+            
+            // Show success message
+            setTimeout(() => {
+                alert('Thank you! Your order has been received. You will receive a confirmation email once payment is processed.');
+                closeCheckout();
+            }, 1000);
+        }
+        
+        // Story carousel
+        let currentSlide = 0;
+        const slides = document.getElementById('storySlides');
+        const totalSlides = 2;
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlidePosition();
+        }
+        
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlidePosition();
+        }
+        
+        function updateSlidePosition() {
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+        
+        // Close modal on overlay click
+        document.getElementById('checkoutModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCheckout();
+            }
+        });
+        
+        // Track scroll depth
         let scrolled25 = false, scrolled50 = false, scrolled75 = false;
         
         window.addEventListener('scroll', () => {
@@ -554,16 +1028,34 @@
             
             if (scrollPercent > 25 && !scrolled25) {
                 scrolled25 = true;
-                console.log('User scrolled 25%');
+                console.log('Scroll: 25%');
             }
             if (scrollPercent > 50 && !scrolled50) {
                 scrolled50 = true;
-                console.log('User scrolled 50%');
+                console.log('Scroll: 50%');
             }
             if (scrollPercent > 75 && !scrolled75) {
                 scrolled75 = true;
-                console.log('User scrolled 75%');
+                console.log('Scroll: 75%');
             }
+        });
+        
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>
