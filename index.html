@@ -2181,16 +2181,12 @@
         }
     </style>
 </head><body>
-    <!-- Live Countdown Timer Bar -->
-    <div id="countdown-bar" style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(90deg, var(--primary-gold), var(--accent-bronze)); color: white; padding: 12px; text-align: center; z-index: 9999; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-            <span>🔥 FLASH SALE ENDS IN:</span>
-            <div id="countdown-timer" style="display: flex; gap: 15px; font-family: monospace; font-size: 18px;">
-                <div><span id="hours">02</span>h</div>
-                <div><span id="minutes">47</span>m</div>
-                <div><span id="seconds">59</span>s</div>
-            </div>
-            <span>Only 47 sets at $29!</span>
+    <!-- SINGLE URGENCY BAR - MOBILE OPTIMIZED -->
+    <div id="urgency-bar" style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(90deg, var(--primary-gold), var(--accent-bronze)); color: white; padding: 8px; text-align: center; z-index: 9999; font-size: 11px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <span>🚚 FREE SHIPPING</span>
+            <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px;">48HR DELIVERY</span>
+            <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px;">ONLY 47 LEFT</span>
         </div>
     </div>
     
@@ -2232,44 +2228,7 @@
         </div>
     </div>
     
-    <!-- Trust Badges Bar -->
-    <div style="background: #f8f9fa; padding: 12px 20px; border-bottom: 1px solid #e0e0e0; margin-top: 48px;">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; font-size: 14px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="color: var(--primary-gold);">🔒</span>
-                <span>Secure Checkout</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="color: #2196f3;">📦</span>
-                <span>Free Shipping</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="color: #9c27b0;">🚚</span>
-                <span>48-Hour Delivery</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="color: #ff6b6b;">↩️</span>
-                <span>30-Day Returns</span>
-            </div>
-        </div>
-    </div>
-    
-    <!-- ULTRA CONVERSION ELEMENTS - FLOATING PURCHASE NOTIFICATIONS -->
-    <div id="purchase-notifications"></div>
-    
-    <!-- LIVE SHOPPING TICKER -->
-    <div class="shopping-ticker">
-        <div class="ticker-content">
-            <span style="margin-right: 50px;">🔥 Sophia (NYC) just saved €1,111 on Size 38 • </span>
-            <span style="margin-right: 50px;">⚡ Madison (LA) grabbed Size 36 - Only 2 left! • </span>
-            <span style="margin-right: 50px;">💫 Emma (Miami) got the last Size 40 in her cart • </span>
-            <span style="margin-right: 50px;">🎯 Olivia (Chicago) is checking out with Size 38 • </span>
-            <span style="margin-right: 50px;">✨ Isabella (Boston) just joined - 847 people viewing now • </span>
-            <span style="margin-right: 50px;">🚨 Size 34 SOLD OUT while you're reading this • </span>
-            <span style="margin-right: 50px;">💎 Ava (Dallas) saved €1,111 - "can't believe this price!" • </span>
-            <span style="margin-right: 50px;">⏰ Charlotte (Seattle) secured Size 42 - Smart move! • </span>
-        </div>
-    </div>
+    <!-- REMOVE ALL DISTRACTING ELEMENTS - MOVED TO BOTTOM -->
     
     <!-- EXIT INTENT POPUP -->
     <div class="exit-popup" id="exitPopup">
@@ -2294,16 +2253,7 @@
         </div>
     </div>
     
-    <!-- FLOATING SIZE WARNING -->
-    <div class="size-warning-float" id="sizeWarning">
-        <div style="font-weight: 700; margin-bottom: 10px;">⚠️ SIZE ALERT</div>
-        <p style="font-size: 14px; line-height: 1.4; margin: 0;">
-            Size 38 & 40 selling 3x faster than expected. If that's your size, grab it NOW!
-        </p>
-        <div style="margin-top: 10px; font-size: 12px; opacity: 0.9;">
-            Click to select your size →
-        </div>
-    </div>
+    <!-- REMOVED SIZE WARNING FROM TOP -->
     
     <script>
         // Show floating notifications
@@ -2512,53 +2462,34 @@
     </script>
     <!-- COMPLETE NETLIFY BODY STRUCTURE WITH PAYMENT GATEWAY INTEGRATION -->
     
-    <!-- CONVERSION-FOCUSED URGENCY BAR -->
-    <div style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(90deg, var(--primary-gold), var(--accent-bronze)); color: white; padding: 8px; text-align: center; z-index: 9999; font-size: 12px; font-weight: 600;">
-        <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
-            <span>🚚 FREE SHIPPING</span>
-            <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 10px;">48HR DELIVERY</span>
-            <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 10px;">47 LEFT AT $29</span>
-        </div>
-    </div>
-    
-    <div class="container" style="padding-top: 40px;">
-        <!-- MOBILE-FIRST HERO SECTION - OPTIMIZED FOR CONVERSIONS -->
-        <section class="hero" style="position: relative; overflow: hidden; padding: 20px 15px 30px;">
+    <!-- MAIN CONTAINER - RUSSELL BRUNSON OPTIMIZED -->
+    <div class="container" style="padding-top: 35px;">
+        <!-- RUSSELL BRUNSON OPTIMIZED HERO - HOOK/STORY/OFFER -->
+        <section class="hero" style="position: relative; overflow: hidden; padding: 15px 10px 20px;">
             
-            <!-- HOOK: IMMEDIATE VALUE PROPOSITION -->
-            <div style="text-align: center; margin-bottom: 15px;">
-                <h1 style="font-size: 26px; font-weight: 800; line-height: 1.15; margin-bottom: 8px; color: var(--text-dark);">
-                    The €1,140 Desert Road Set<br>
-                    <span style="color: var(--primary-gold); font-size: 32px;">Now Only $29</span>
+            <!-- HOOK: IMMEDIATE SAVINGS - FIRST THING THEY SEE -->
+            <div style="text-align: center; margin-bottom: 12px;">
+                <h1 style="font-size: 24px; font-weight: 800; line-height: 1.1; margin-bottom: 6px; color: var(--text-dark);">
+                    Save €1,111 Today Only<br>
+                    <span style="color: var(--primary-gold); font-size: 28px;">Desert Road Set $29</span>
                 </h1>
-                <p style="font-size: 14px; color: var(--text-light); margin-bottom: 10px;">
-                    97% OFF Today Only • Free Shipping
-                </p>
-                
-                <!-- TRUST INDICATORS - ABOVE THE FOLD -->
-                <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap;">
-                    <span style="font-size: 11px; color: var(--text-light); display: flex; align-items: center; gap: 4px;">
-                        <span style="color: var(--primary-gold);">✓</span> Secure Checkout
-                    </span>
-                    <span style="font-size: 11px; color: var(--text-light); display: flex; align-items: center; gap: 4px;">
-                        <span style="color: var(--primary-gold);">✓</span> 30-Day Returns
-                    </span>
-                    <span style="font-size: 11px; color: var(--text-light); display: flex; align-items: center; gap: 4px;">
-                        <span style="color: var(--primary-gold);">✓</span> 250k+ Sold
-                    </span>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 10px;">
+                    <span style="text-decoration: line-through; color: #999; font-size: 16px;">€1,140</span>
+                    <span style="background: #ff4444; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">97% OFF</span>
+                    <span style="color: var(--primary-gold); font-size: 12px; font-weight: 600;">• 47 LEFT</span>
                 </div>
             </div>
             
-            <div class="product-display" style="position: relative; margin-bottom: 20px;">
-                <!-- ENHANCED PRODUCT CAROUSEL WITH NAVIGATION -->
-                <div class="product-carousel" id="heroCarousel" style="position: relative; overflow: hidden; border-radius: 12px; background: #f5f5f5;">
+            <!-- STORY: PRODUCT IMAGES IMMEDIATELY -->
+            <div class="product-display" style="position: relative; margin-bottom: 15px;">
+                <div class="product-carousel" id="heroCarousel" style="position: relative; overflow: hidden; border-radius: 8px; background: #f5f5f5; max-height: 350px;">
                     <div class="product-slides" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
-                        <img src="./images/product/lava-top-main.jpg" alt="Lava Top Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 400px;">
-                        <img src="./images/product/lava-pants-main.jpg" alt="Lava Pants Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 400px;">
-                        <img src="./images/product/lava-top-square.jpg" alt="Lava Top Detail" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 400px;">
-                        <img src="./images/product/lava-pants-square.jpg" alt="Lava Pants Detail" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 400px;">
-                        <img src="./images/product/top_img2.jpg" alt="Lava Top Square" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 400px;">
-                        <img src="./images/product/pants_img2.jpg" alt="Lava Pants Square" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 400px;">
+                        <img src="./images/product/lava-top-main.jpg" alt="Lava Top Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 350px;">
+                        <img src="./images/product/lava-pants-main.jpg" alt="Lava Pants Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 350px;">
+                        <img src="./images/product/lava-top-square.jpg" alt="Lava Top Detail" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 350px;">
+                        <img src="./images/product/lava-pants-square.jpg" alt="Lava Pants Detail" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 350px;">
+                        <img src="./images/product/top_img2.jpg" alt="Lava Top Square" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 350px;">
+                        <img src="./images/product/pants_img2.jpg" alt="Lava Pants Square" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 350px;">
                     </div>
                     
                     <!-- NAVIGATION BUTTONS -->
@@ -2584,27 +2515,23 @@
                 </div>
             </div>
 
-            <!-- MAIN CTA - ABOVE THE FOLD -->
-            <div style="margin-bottom: 20px;">
-                <button onclick="scrollToSizeSelector()" style="width: 100%; background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze)); color: white; border: none; padding: 18px; font-size: 18px; font-weight: 700; border-radius: 100px; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3); position: relative; overflow: hidden;">
-                    <span style="position: relative; z-index: 1;">GET YOUR SET FOR $29</span>
-                    <div style="font-size: 12px; margin-top: 4px; opacity: 0.9;">→ Select Your Size Below</div>
+            <!-- OFFER: BIG CTA WITH URGENCY -->
+            <div style="margin-bottom: 15px;">
+                <button onclick="scrollToSizeSelector()" style="width: 100%; background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze)); color: white; border: none; padding: 16px; font-size: 17px; font-weight: 700; border-radius: 100px; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3); position: relative;">
+                    <span>CLAIM YOUR $29 SET NOW</span>
+                    <div style="font-size: 11px; margin-top: 3px; opacity: 0.95;">Only 47 Left • Ships Today</div>
                 </button>
                 
-                <!-- URGENCY & SCARCITY -->
-                <div style="display: flex; justify-content: space-around; margin-top: 15px; padding: 12px; background: rgba(212, 165, 116, 0.1); border-radius: 8px;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 20px; font-weight: 700; color: var(--primary-gold);">47</div>
-                        <div style="font-size: 11px; color: var(--text-light);">Left at $29</div>
+                <!-- VALUE STACK - What They Get -->
+                <div style="margin-top: 12px; padding: 10px; background: white; border: 1px solid var(--primary-gold); border-radius: 8px;">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">YOUR ORDER INCLUDES:</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 11px; color: var(--text-light);">
+                        <div>✓ Desert Road Top (€570)</div>
+                        <div>✓ Matching Pants (€570)</div>
+                        <div>✓ Free Express Shipping</div>
+                        <div>✓ 30-Day Returns</div>
                     </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 20px; font-weight: 700; color: var(--primary-gold);">3,247</div>
-                        <div style="font-size: 11px; color: var(--text-light);">Viewing Now</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 20px; font-weight: 700; color: var(--primary-gold);">23</div>
-                        <div style="font-size: 11px; color: var(--text-light);">In Carts</div>
-                    </div>
+                    <div style="text-align: center; margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--primary-gold);">Total Value: €1,140 → Today: $29</div>
                 </div>
             </div>
             
@@ -5389,33 +5316,39 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background: #ff4444;
-                color: white;
-                padding: 30px;
-                border-radius: 15px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                background: white;
+                color: var(--text-dark);
+                padding: 25px;
+                border-radius: 16px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                border: 2px solid var(--primary-gold);
                 z-index: 10000;
                 text-align: center;
-                font-weight: bold;
-                font-size: 18px;
-                max-width: 400px;
+                font-weight: 600;
+                font-size: 16px;
+                max-width: 380px;
                 animation: popupSlideIn 0.3s ease-out;
             `;
             
             popup.innerHTML = `
-                <div style="font-size: 24px; margin-bottom: 15px;">⚡ ALERT! ⚡</div>
-                <div style="font-size: 20px; margin-bottom: 15px;">XL Size Just Sold Out!</div>
-                <div style="font-size: 16px; margin-bottom: 20px;">Don't miss out on remaining sizes!</div>
-                <button onclick="closeXLPopup(); scrollToCheckout();" style="
-                    background: white;
-                    color: #ff4444;
+                <div style="font-size: 20px; margin-bottom: 12px; color: var(--primary-gold);">⏰ URGENT UPDATE</div>
+                <div style="font-size: 18px; margin-bottom: 12px; font-weight: 700;">Size 44 Just Sold Out!</div>
+                <div style="font-size: 14px; margin-bottom: 8px; color: #666;">Most popular sizes selling fast:</div>
+                <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                    <span style="padding: 4px 8px; background: #fff3cd; border: 1px solid var(--primary-gold); border-radius: 4px; font-size: 12px;">38: 3 left</span>
+                    <span style="padding: 4px 8px; background: #fff3cd; border: 1px solid var(--primary-gold); border-radius: 4px; font-size: 12px;">40: 2 left</span>
+                </div>
+                <button onclick="closeXLPopup(); scrollToSizeSelector();" style="
+                    background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze));
+                    color: white;
                     border: none;
-                    padding: 10px 20px;
-                    border-radius: 8px;
+                    padding: 12px 24px;
+                    border-radius: 50px;
                     font-weight: bold;
                     cursor: pointer;
                     font-size: 16px;
-                ">Secure My Size Now!</button>
+                    width: 100%;
+                ">Select Your Size Before It's Gone</button>
             `;
             
             // Add popup CSS animations
