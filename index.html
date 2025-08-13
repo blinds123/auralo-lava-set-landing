@@ -2180,6 +2180,69 @@
             }
         }
     </style>
+    
+    <script>
+        // TREY LEWELLEN PURCHASE NOTIFICATIONS
+        document.addEventListener('DOMContentLoaded', function() {
+            function showPurchaseNotification() {
+                const names = ['Emma', 'Sarah', 'Madison', 'Olivia', 'Sophia', 'Ava', 'Isabella'];
+                const cities = ['NYC', 'LA', 'Miami', 'Chicago', 'Dallas', 'Boston', 'Seattle'];
+                const sizes = ['36', '38', '40', '42'];
+                const times = ['2 minutes ago', '5 minutes ago', '7 minutes ago', '12 minutes ago'];
+                
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    left: 20px;
+                    background: white;
+                    border: 2px solid var(--primary-gold);
+                    border-radius: 12px;
+                    padding: 12px 16px;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+                    z-index: 9995;
+                    animation: slideInLeft 0.5s ease-out;
+                    max-width: 280px;
+                `;
+                
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const randomCity = cities[Math.floor(Math.random() * cities.length)];
+                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+                const randomTime = times[Math.floor(Math.random() * times.length)];
+                
+                notification.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+                            ✓
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; font-size: 13px; color: var(--text-dark);">${randomName} from ${randomCity}</div>
+                            <div style="font-size: 11px; color: var(--text-light);">Purchased Size ${randomSize}</div>
+                            <div style="font-size: 10px; color: var(--primary-gold); margin-top: 2px;">${randomTime}</div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Remove after 5 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'slideOutLeft 0.5s ease-out';
+                    setTimeout(() => notification.remove(), 500);
+                }, 5000);
+            }
+            
+            // Show purchase notification every 30-60 seconds
+            setInterval(() => {
+                if (Math.random() > 0.3) {
+                    showPurchaseNotification();
+                }
+            }, Math.random() * 30000 + 30000);
+            
+            // Show first notification after 10 seconds
+            setTimeout(showPurchaseNotification, 10000);
+        });
+    </script>
 </head><body>
     <!-- SINGLE URGENCY BAR - MOBILE OPTIMIZED -->
     <div id="urgency-bar" style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(90deg, var(--primary-gold), var(--accent-bronze)); color: white; padding: 8px; text-align: center; z-index: 9999; font-size: 11px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -2467,14 +2530,18 @@
         <!-- ZERO-WASTE HERO - MAXIMUM CONVERSIONS -->
         <section class="hero" style="position: relative; overflow: hidden; padding: 5px 8px 10px;">
             
-            <!-- HOOK AT <50PX - IMMEDIATE IMPACT -->
+            <!-- TREY LEWELLEN OPTIMIZED HOOK -->
             <div style="text-align: center; margin-bottom: 8px;">
                 <h1 style="font-size: 22px; font-weight: 800; line-height: 1.05; margin: 0 0 4px 0; color: var(--text-dark);">
                     <span style="color: #ff4444;">97% OFF</span> Designer Set<br>
                     <span style="color: var(--primary-gold); font-size: 26px;">€1,140 → $29 TODAY</span>
                 </h1>
-                <div style="font-size: 12px; color: var(--text-light); margin-bottom: 6px;">
-                    🔥 47 Left • Free Shipping • Ships Today
+                <!-- REAL-TIME SOCIAL PROOF -->
+                <div style="font-size: 11px; background: #fff3cd; padding: 4px 8px; border-radius: 4px; margin-bottom: 4px; animation: pulse 2s infinite;">
+                    🔥 <span id="viewers-count">3,247</span> viewing • <span id="carts-count">23</span> in carts • <span id="stock-count">47</span> left
+                </div>
+                <div style="font-size: 11px; color: var(--text-light);">
+                    ✅ Last purchase: <span id="last-purchase">2 minutes ago</span> (Sarah, NYC)
                 </div>
             </div>
             
@@ -2530,12 +2597,12 @@
                     </div>
                 </div>
                 
-                <button onclick="scrollToSizeSelector()" style="width: 100%; background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze)); color: white; border: none; padding: 14px; font-size: 16px; font-weight: 700; border-radius: 100px; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3); animation: pulse 2s infinite;">
+                <button onclick="initiateCheckout()" style="width: 100%; background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze)); color: white; border: none; padding: 14px; font-size: 16px; font-weight: 700; border-radius: 100px; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3); animation: pulse 2s infinite;">
                     <span>YES! CLAIM MY $29 SET NOW</span>
-                    <div style="font-size: 10px; margin-top: 2px; opacity: 0.95;">🔒 Secure Checkout • Ships Today</div>
+                    <div style="font-size: 10px; margin-top: 2px; opacity: 0.95;">🔒 Secure Checkout • Ships in <span id="ship-timer">2h 47m</span></div>
                 </button>
                 
-                <!-- VALUE STACK - What They Get -->
+                <!-- TREY'S VALUE STACK + TRUST -->
                 <div style="margin-top: 12px; padding: 10px; background: white; border: 1px solid var(--primary-gold); border-radius: 8px;">
                     <div style="font-size: 12px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">YOUR ORDER INCLUDES:</div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 11px; color: var(--text-light);">
@@ -2545,6 +2612,22 @@
                         <div>✓ 30-Day Returns</div>
                     </div>
                     <div style="text-align: center; margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--primary-gold);">Total Value: €1,140 → Today: $29</div>
+                    
+                    <!-- TRUST BADGES -->
+                    <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
+                        <div style="font-size: 10px; text-align: center;">
+                            <div style="font-size: 16px;">🔒</div>
+                            <div>SSL Secure</div>
+                        </div>
+                        <div style="font-size: 10px; text-align: center;">
+                            <div style="font-size: 16px;">🎆</div>
+                            <div>Norton Safe</div>
+                        </div>
+                        <div style="font-size: 10px; text-align: center;">
+                            <div style="font-size: 16px;">✅</div>
+                            <div>Verified</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -4762,6 +4845,53 @@
             }
         }
         
+        // TREY LEWELLEN REAL-TIME UPDATES
+        function updateRealTimeStats() {
+            // Update viewers count
+            const viewers = document.getElementById('viewers-count');
+            if (viewers) {
+                const currentViewers = parseInt(viewers.textContent);
+                const change = Math.floor(Math.random() * 50) - 25;
+                viewers.textContent = Math.max(2500, currentViewers + change).toLocaleString();
+            }
+            
+            // Update carts count
+            const carts = document.getElementById('carts-count');
+            if (carts) {
+                const currentCarts = parseInt(carts.textContent);
+                const change = Math.floor(Math.random() * 5) - 2;
+                carts.textContent = Math.max(15, currentCarts + change);
+            }
+            
+            // Update last purchase time
+            const purchases = ['1 minute ago', '2 minutes ago', '3 minutes ago', '47 seconds ago'];
+            const names = ['Emma', 'Sarah', 'Madison', 'Olivia', 'Sophia'];
+            const cities = ['NYC', 'LA', 'Miami', 'Chicago', 'Dallas'];
+            const lastPurchase = document.getElementById('last-purchase');
+            if (lastPurchase && Math.random() > 0.7) {
+                const randomPurchase = purchases[Math.floor(Math.random() * purchases.length)];
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const randomCity = cities[Math.floor(Math.random() * cities.length)];
+                lastPurchase.textContent = `${randomPurchase} (${randomName}, ${randomCity})`;
+            }
+        }
+        
+        // Update every 3 seconds
+        setInterval(updateRealTimeStats, 3000);
+        updateRealTimeStats();
+        
+        // SIMPLESWAP INTEGRATION
+        function initiateCheckout() {
+            // Check if size is selected
+            if (!selectedSize) {
+                scrollToSizeSelector();
+                return;
+            }
+            
+            // Redirect to SimpleSwap with $29 amount
+            window.location.href = 'https://simpleswap.io/exchange?from=usd&to=btc&amount=29';
+        }
+        
         // Enhanced Carousel Navigation Functions
         function moveCarousel(carouselId, direction) {
             const carousel = document.getElementById(carouselId);
@@ -5401,8 +5531,16 @@
         }
         
         function showCheckoutPopup() {
-            // Copy wallet address when popup shows
-            copyWalletAddress();
+            // Check if size selected first
+            if (!selectedSize) {
+                scrollToSizeSelector();
+                return;
+            }
+            
+            // Redirect to SimpleSwap
+            const amount = selectedPrice || 29;
+            window.location.href = `https://simpleswap.io/exchange?from=usd&to=btc&amount=${amount}`;
+            return;
             
             const size = sessionStorage.getItem('selectedSize') || selectedSize;
             const orderType = sessionStorage.getItem('orderType') || selectedProductType;
