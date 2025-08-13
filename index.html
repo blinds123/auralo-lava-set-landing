@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Desert Road Set - Save €1,111 Today Only | Free Shipping</title>
+    <title>⚡ LIVE NOW: Desert Road Set €1,140 → $29 (97% OFF) | Free Express Shipping</title>
     <!-- PERFORMANCE OPTIMIZATIONS -->
     <link rel="preload" href="./images/product/main-product.jpg" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +37,103 @@
             --bg-cream: #faf8f5;
             --bg-white: #ffffff;
         }
+        
+        /* Pattern Interrupt Video Styles */
+        .pattern-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        /* Exit Intent Popup */
+        .exit-intent-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-sand));
+            padding: 40px;
+            border-radius: 20px;
+            z-index: 10000;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .exit-intent-popup.show {
+            display: block;
+            animation: slideInBounce 0.5s ease;
+        }
+        
+        @keyframes slideInBounce {
+            0% { transform: translate(-50%, -150%) scale(0.8); }
+            60% { transform: translate(-50%, -45%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        
+        /* Day/Night Transformation */
+        .transformation-section img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .transformation-section img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        /* Celebrity Wall */
+        .celebrity-wall {
+            background: linear-gradient(135deg, #f5f5f5, #ffffff);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .celebrity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        
+        .celebrity-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .celebrity-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .celebrity-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .celebrity-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px 10px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
         
         /* Global alignment fixes */
         .container {
@@ -2249,9 +2346,30 @@
         <div style="display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;">
             <span>🚚 FREE SHIPPING</span>
             <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px;">48HR DELIVERY</span>
-            <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px;">ONLY 47 LEFT</span>
+            <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px;">ONLY <span id="stock-counter">47</span> LEFT</span>
         </div>
     </div>
+    
+    <!-- Exit Intent Popup -->
+    <div class="exit-intent-popup" id="exitPopup">
+        <div style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 24px; color: white;" onclick="closeExitPopup()">✕</div>
+        <h2 style="color: white; margin-bottom: 15px; font-size: 28px;">WAIT! DON'T MISS OUT! 🛑</h2>
+        <p style="color: white; font-size: 18px; margin-bottom: 20px;">Our CEO wants you to have this...</p>
+        <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 20px;">
+            <h3 style="color: var(--dark-brown); margin-bottom: 10px;">EXCLUSIVE OFFER</h3>
+            <div style="font-size: 36px; font-weight: 800; color: var(--primary-gold); margin-bottom: 10px;">
+                EXTRA $10 OFF
+            </div>
+            <div style="font-size: 24px; color: var(--text-dark); text-decoration: line-through;">$29</div>
+            <div style="font-size: 48px; font-weight: 800; color: #27ae60;">ONLY $19</div>
+        </div>
+        <button onclick="acceptExitOffer()" style="background: white; color: var(--dark-brown); border: none; padding: 20px 40px; font-size: 20px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+            YES! GIVE ME $10 OFF →
+        </button>
+        <p style="color: white; font-size: 12px; margin-top: 15px; opacity: 0.9;">This offer expires when you leave this page</p>
+    </div>
+    <div id="exitOverlay" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 9999;"></div>
+    
     
     <!-- Mobile Sticky Buy Button -->
     <div id="mobile-sticky-buy" style="position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 12px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 9998; display: none; border-top: 2px solid var(--primary-gold);">
@@ -2545,8 +2663,25 @@
                 </div>
             </div>
             
-            <!-- STORY: PRODUCTS AT 100PX MAX -->
+            <!-- WHY $29 TRUST SECTION - ADDRESSES #1 OBJECTION -->
+            <div style="background: linear-gradient(135deg, #fff3cd, #ffe5b4); padding: 8px; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--primary-gold);">
+                <div style="font-size: 12px; font-weight: 700; color: var(--dark-brown); margin-bottom: 4px;">
+                    🔐 Why Only $29? (Original Price: €1,140)
+                </div>
+                <div style="font-size: 11px; color: var(--text-dark); line-height: 1.4;">
+                    ✓ Direct from manufacturer (no retail markup)<br>
+                    ✓ Excess inventory from Fashion Week<br>
+                    ✓ 48-hour flash sale promotion<br>
+                    ✓ Limited to 100 units at this price
+                </div>
+            </div>
+            
+            <!-- STORY: PRODUCTS WITH 360 VIEW INDICATOR -->
             <div class="product-display" style="position: relative; margin-bottom: 10px;">
+                <!-- 360 View Badge -->
+                <div style="position: absolute; top: 10px; right: 10px; background: white; padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    🔄 Swipe for 360° View
+                </div>
                 <div class="product-carousel" id="heroCarousel" style="position: relative; overflow: hidden; border-radius: 6px; background: #f5f5f5; max-height: 280px;">
                     <div class="product-slides" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
                         <img src="./images/product/lava-top-main.jpg" alt="Lava Top Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
@@ -2590,10 +2725,10 @@
                 <!-- COUNTDOWN TIMER -->
                 <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 8px; margin-bottom: 8px; border-radius: 6px; text-align: center;">
                     <div style="font-size: 11px; color: #856404; margin-bottom: 4px;">PRICE INCREASES IN:</div>
-                    <div style="display: flex; justify-content: center; gap: 12px; font-family: monospace; font-size: 18px; font-weight: 700; color: #d32f2f;">
-                        <span>02h</span>
-                        <span>47m</span>
-                        <span>59s</span>
+                    <div id="countdown-timer" style="display: flex; justify-content: center; gap: 12px; font-family: monospace; font-size: 18px; font-weight: 700; color: #d32f2f;">
+                        <span id="countdown-hours">02h</span>
+                        <span id="countdown-minutes">47m</span>
+                        <span id="countdown-seconds">59s</span>
                     </div>
                 </div>
                 
@@ -2712,7 +2847,28 @@
             </div>
         </section>
 
-        <!-- SIZE SELECTION -->
+        <!-- DELIVERY TIMER & GUARANTEE - ADDRESSES TOP OBJECTIONS -->
+        <section style="background: linear-gradient(135deg, #e8f5e9, #f1f8e9); padding: 20px; margin: 20px 0; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; max-width: 800px; margin: 0 auto;">
+                <div style="text-align: center;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">📦</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--dark-brown);">Express Delivery</div>
+                    <div style="font-size: 12px; color: var(--text-dark);">Get it by <span style="font-weight: 700; color: #27ae60;" id="delivery-date"></span></div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">✅</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--dark-brown);">30-Day Guarantee</div>
+                    <div style="font-size: 12px; color: var(--text-dark);">Full refund if not satisfied</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">🔒</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--dark-brown);">Secure Payment</div>
+                    <div style="font-size: 12px; color: var(--text-dark);">SSL Encrypted Checkout</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SIZE SELECTION WITH VIDEO GUIDE -->
         <section class="size-selector" style="margin-top: 40px;">
             <div style="text-align: center; margin-bottom: 20px;">
                 <img src="./images/product/lava-pants-main.jpg" alt="Lava Two-Piece Set Desert Road" style="max-width: 300px; border-radius: 8px;">
@@ -2722,9 +2878,13 @@
                 </p>
             </div>
             
+            <!-- SIZE GUIDE WITH MODEL STATS -->
             <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 12px; padding: 16px; margin: 20px auto; max-width: 500px;">
                 <h3 class="size-title" style="margin: 0; font-size: 20px;">⚠️ Select Your Size First</h3>
                 <p class="size-subtitle" style="margin: 8px 0 0 0;">European sizing • Runs true to size</p>
+                <button onclick="showSizeGuide()" style="background: var(--primary-gold); color: white; border: none; padding: 8px 16px; border-radius: 20px; margin-top: 10px; cursor: pointer; font-size: 12px; font-weight: 600;">
+                    📏 View Size Guide (Model is 5'9", Size 36)
+                </button>
             </div>
             
             <div class="size-grid">
@@ -3159,6 +3319,97 @@
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
                 </button>
+            </div>
+        </section>
+
+        <!-- DAY VS NIGHT TRANSFORMATION -->
+        <section class="transformation-section" style="padding: 60px 20px; background: linear-gradient(135deg, var(--bg-cream), var(--bg-white));">
+            <div class="container">
+                <h2 class="section-title" style="color: var(--dark-brown); margin-bottom: 10px;">From 9AM Meeting to 9PM Rooftop</h2>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 40px; font-size: 18px;">
+                    One set. Every occasion. All day confidence.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 800px; margin: 0 auto;">
+                    <!-- 9AM Professional -->
+                    <div style="text-align: center; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="font-size: 48px; margin-bottom: 10px;">☀️</div>
+                        <h3 style="font-size: 22px; color: var(--dark-brown); margin-bottom: 10px;">9AM Office</h3>
+                        <img src="./images/product/lava-top-main.jpg" alt="Morning Professional" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+                        <ul style="text-align: left; list-style: none; padding: 0; font-size: 14px; color: var(--text-light);">
+                            <li>✓ Professional elegance</li>
+                            <li>✓ Boardroom ready</li>
+                            <li>✓ Subtle luxury</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 9PM Evening -->
+                    <div style="text-align: center; background: linear-gradient(135deg, #2c2416, #3d3426); padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                        <div style="font-size: 48px; margin-bottom: 10px;">🌙</div>
+                        <h3 style="font-size: 22px; color: var(--primary-gold); margin-bottom: 10px;">9PM Rooftop</h3>
+                        <img src="./images/product/lava-pants-main.jpg" alt="Evening Elegance" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+                        <ul style="text-align: left; list-style: none; padding: 0; font-size: 14px; color: var(--light-beige);">
+                            <li>✓ Night-out perfection</li>
+                            <li>✓ Instant attention</li>
+                            <li>✓ Unforgettable presence</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(212, 165, 116, 0.1); border-radius: 15px;">
+                    <p style="font-size: 18px; color: var(--dark-brown); font-weight: 600;">
+                        "Wore it to my morning presentation, then straight to dinner at Nobu. Got compliments at both."
+                    </p>
+                    <p style="font-size: 14px; color: var(--text-light); margin-top: 10px;">
+                        - Jessica M., Investment Banker
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CELEBRITY/INFLUENCER SOCIAL PROOF WALL -->
+        <section class="celebrity-wall">
+            <div class="container">
+                <h2 class="section-title" style="color: var(--dark-brown); margin-bottom: 10px;">Join The Elite Circle</h2>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; font-size: 16px;">
+                    Celebrities and influencers who understand the power of presence
+                </p>
+                
+                <div class="celebrity-grid">
+                    <div class="celebrity-item">
+                        <img src="./images/influencer-1.jpg" alt="Fashion Icon" style="background: linear-gradient(135deg, var(--primary-gold), var(--secondary-sand));">
+                        <div class="celebrity-name">@fashionista_nyc</div>
+                    </div>
+                    <div class="celebrity-item">
+                        <img src="./images/influencer-2.jpg" alt="Style Maven" style="background: linear-gradient(135deg, var(--secondary-sand), var(--accent-bronze));">
+                        <div class="celebrity-name">@luxurylifestyle</div>
+                    </div>
+                    <div class="celebrity-item">
+                        <img src="./images/influencer-3.jpg" alt="Trendsetter" style="background: linear-gradient(135deg, var(--accent-bronze), var(--primary-gold));">
+                        <div class="celebrity-name">@elitestyle</div>
+                    </div>
+                    <div class="celebrity-item">
+                        <img src="./images/influencer-4.jpg" alt="Fashion Forward" style="background: linear-gradient(135deg, var(--primary-gold), var(--light-beige));">
+                        <div class="celebrity-name">@hautecouture</div>
+                    </div>
+                    <div class="celebrity-item">
+                        <img src="./images/influencer-5.jpg" alt="Style Icon" style="background: linear-gradient(135deg, var(--light-beige), var(--secondary-sand));">
+                        <div class="celebrity-name">@milanfashion</div>
+                    </div>
+                    <div class="celebrity-item">
+                        <img src="./images/influencer-6.jpg" alt="Luxury Life" style="background: linear-gradient(135deg, var(--secondary-sand), var(--primary-gold));">
+                        <div class="celebrity-name">@parischic</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(212, 165, 116, 0.1); border-radius: 15px;">
+                    <p style="font-size: 18px; color: var(--dark-brown); font-weight: 600;">
+                        "The Desert Road Set isn't just clothing, it's a statement of arrival."
+                    </p>
+                    <p style="font-size: 14px; color: var(--text-light); margin-top: 10px;">
+                        - Featured in Vogue, Harper's Bazaar, Elle
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -6522,6 +6773,72 @@
         });
 
         console.log('🚀 Ultra Pump Animations Activated!');
+        
+        // EXIT INTENT POPUP FUNCTIONALITY
+        if (typeof exitIntentShown === 'undefined') {
+            var exitIntentShown = false;
+        }
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 && !exitIntentShown) {
+                document.getElementById('exitPopup').classList.add('show');
+                document.getElementById('exitOverlay').style.display = 'block';
+                exitIntentShown = true;
+            }
+        });
+        
+        function closeExitPopup() {
+            document.getElementById('exitPopup').classList.remove('show');
+            document.getElementById('exitOverlay').style.display = 'none';
+        }
+        
+        function acceptExitOffer() {
+            window.location.href = 'https://simpleswap.io/exchange?from=usd&to=btc&amount=19';
+        }
+        
+        
+        // DAY/NIGHT ANIMATION
+        const dayNightImages = document.querySelectorAll('.transformation-section img');
+        if (dayNightImages.length > 0) {
+            dayNightImages.forEach((img, index) => {
+                img.style.transition = 'transform 0.3s ease';
+                img.addEventListener('mouseenter', () => {
+                    img.style.transform = 'scale(1.05)';
+                });
+                img.addEventListener('mouseleave', () => {
+                    img.style.transform = 'scale(1)';
+                });
+            });
+        }
+        
+        // DYNAMIC STOCK COUNTER
+        setInterval(() => {
+            const stockCounter = document.getElementById('stock-counter');
+            if (stockCounter) {
+                const current = parseInt(stockCounter.textContent);
+                if (Math.random() > 0.8 && current > 10) {
+                    stockCounter.textContent = current - 1;
+                }
+            }
+        }, 30000);
+        
+        // DYNAMIC DELIVERY DATE
+        function updateDeliveryDate() {
+            const deliveryDate = document.getElementById('delivery-date');
+            if (deliveryDate) {
+                const today = new Date();
+                const delivery = new Date(today);
+                delivery.setDate(delivery.getDate() + 2); // 48 hour delivery
+                
+                const options = { weekday: 'long', month: 'short', day: 'numeric' };
+                deliveryDate.textContent = delivery.toLocaleDateString('en-US', options);
+            }
+        }
+        updateDeliveryDate();
+        
+        // SIZE GUIDE MODAL
+        function showSizeGuide() {
+            alert('Size Guide:\n\nEU 34 = US 2 = UK 6\nEU 36 = US 4 = UK 8\nEU 38 = US 6 = UK 10\nEU 40 = US 8 = UK 12\nEU 42 = US 10 = UK 14\nEU 44 = US 12 = UK 16\n\nModel is 5\'9" (175cm) wearing size 36');
+        }
     </script>
 </body>
 </html>
