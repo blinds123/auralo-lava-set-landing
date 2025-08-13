@@ -6739,9 +6739,7 @@
         console.log('🚀 Ultra Pump Animations Activated!');
         
         // EXIT INTENT POPUP FUNCTIONALITY
-        if (typeof exitIntentShown === 'undefined') {
-            var exitIntentShown = false;
-        }
+        // Using exitIntentShown variable declared earlier  
         document.addEventListener('mouseleave', function(e) {
             if (e.clientY <= 0 && !exitIntentShown) {
                 document.getElementById('exitPopup').classList.add('show');
