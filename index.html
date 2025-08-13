@@ -3308,15 +3308,158 @@
                 storyCarousel: 0
             };
             
+            // Carousel functionality
+            function moveCarousel(carouselId, direction) {
+                const carousel = document.getElementById(carouselId);
+                let slides;
+                
+                // Handle story carousel differently
+                if (carouselId === 'storyCarousel') {
+                    slides = carousel.querySelector('.story-slides') || carousel.querySelector('#storySlides');
+                } else {
+                    slides = carousel.querySelector('.carousel-slides');
+                }
+                
+                if (!slides) return;
+                
+                const totalSlides = slides.children.length;
+                
+                // Update position
+                window.carouselPositions[carouselId] += direction;
+                
+                // Wrap around
+                if (window.carouselPositions[carouselId] < 0) {
+                    window.carouselPositions[carouselId] = totalSlides - 1;
+                } else if (window.carouselPositions[carouselId] >= totalSlides) {
+                    window.carouselPositions[carouselId] = 0;
+                }
+                
+                // Apply transform
+                const position = window.carouselPositions[carouselId];
+                slides.style.transform = `translateX(-${position * 100}%)`;
+                
+                // Update dots if they exist
+                const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === position);
+                });
+                
+                // Update counter if exists
+                const counter = carousel.parentElement.querySelector('.carousel-counter');
+                if (counter) {
+                    counter.textContent = `${String(position + 1).padStart(2, '0')}/${String(totalSlides).padStart(2, '0')}`;
+                }
+                
+                // Update story slide indicator
+                if (carouselId === 'storyCarousel') {
+                    const indicator = document.getElementById('slideIndicator');
+                    if (indicator) {
+                        indicator.textContent = `${position + 1} / ${totalSlides}`;
+                    }
+                }
+            }
+            
             // Define goToSimpleSwap function for all buy buttons
             function goToSimpleSwap() {
                 if (!window.selectedSize) {
                     showSizeSelectionPopup();
                     return;
                 }
-                // Redirect to SimpleSwap with selected size
+                // Show instructions first, then redirect
                 const price = window.selectedPrice || 29;
-                window.location.href = `https://simpleswap.io/exchange?from=usd&to=btc&amount=${price}&note=AuraloDesertRoad_Size${window.selectedSize}`;
+                showSimpleSwapInstructions(price);
+            }
+            
+            // SimpleSwap Instructions Popup
+            function showSimpleSwapInstructions(price) {
+                if (!window.selectedSize) {
+                    showSizeSelectionPopup();
+                    return;
+                }
+                
+                // Create overlay
+                const overlay = document.createElement('div');
+                overlay.id = 'simpleSwapInstructionsOverlay';
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.95);
+                    z-index: 99999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px;
+                    animation: fadeIn 0.3s ease;
+                `;
+                
+                // Create instructions popup
+                const popup = document.createElement('div');
+                popup.style.cssText = `
+                    background: white;
+                    border-radius: 20px;
+                    padding: 30px;
+                    max-width: 500px;
+                    width: 100%;
+                    text-align: center;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+                    max-height: 90vh;
+                    overflow-y: auto;
+                `;
+                
+                popup.innerHTML = `
+                    <h2 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 700; color: #333;">
+                        🔐 How to Complete Your Secure Purchase
+                    </h2>
+                    <p style="margin: 0 0 25px 0; font-size: 16px; color: #666;">
+                        Size <strong>${window.selectedSize}</strong> • Total: <strong>$${price}</strong>
+                    </p>
+                    
+                    <div style="background: #f8f9fa; border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: left;">
+                        <h3 style="font-size: 18px; margin-bottom: 15px; color: #333;">📝 SimpleSwap Instructions:</h3>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <strong style="color: #2196f3;">Step 1:</strong> Select your payment currency (USD, EUR, etc.)
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <strong style="color: #2196f3;">Step 2:</strong> Choose Bitcoin (BTC) as receiving currency
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <strong style="color: #2196f3;">Step 3:</strong> Enter amount: <strong>$${price}</strong>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <strong style="color: #2196f3;">Step 4:</strong> Complete the exchange
+                        </div>
+                        
+                        <div style="background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                            <strong>⚠️ Important:</strong> Your order will be processed immediately after payment confirmation. Size ${window.selectedSize} will be reserved for you.
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button onclick="window.location.href='https://simpleswap.io/exchange?from=usd&to=btc&amount=${price}&note=AuraloDesertRoad_Size${window.selectedSize}';" 
+                                style="padding: 14px 30px; background: #2196f3; color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 16px;">
+                            Continue to SimpleSwap →
+                        </button>
+                        <button onclick="document.getElementById('simpleSwapInstructionsOverlay').remove();" 
+                                style="padding: 14px 30px; background: #f0f0f0; color: #666; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 16px;">
+                            Cancel
+                        </button>
+                    </div>
+                `;
+                
+                overlay.appendChild(popup);
+                document.body.appendChild(overlay);
+                
+                // Add fade in animation
+                const style = document.createElement('style');
+                style.textContent = '@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }';
+                document.head.appendChild(style);
             }
             
             // 15-Second Urgency Popup
@@ -3890,12 +4033,12 @@
             </div>
             
             <div style="text-align: center; margin-top: 24px;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -3960,40 +4103,40 @@
             
             <!-- Carousel Navigation -->
             <div style="display: flex; justify-content: center; align-items: center; gap: 12px; padding: 10px; margin: 20px 0;">
-                <button id="storyPrevBtn" class="carousel-nav carousel-nav-left">‹</button>
-                <span id="slideIndicator" style="font-size: 14px; color: var(--text-light);">1 / 12</span>
-                <button id="storyNextBtn" class="carousel-nav carousel-nav-right">›</button>
+                <button id="storyPrevBtn" class="carousel-nav carousel-nav-left" onclick="moveCarousel('storyCarousel', -1)" style="background: rgba(0,0,0,0.8); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 24px; cursor: pointer;">‹</button>
+                <span id="slideIndicator" style="font-size: 14px; color: var(--text-light);">1 / 5</span>
+                <button id="storyNextBtn" class="carousel-nav carousel-nav-right" onclick="moveCarousel('storyCarousel', 1)" style="background: rgba(0,0,0,0.8); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 24px; cursor: pointer;">›</button>
             </div>
             
-            <div class="story-carousel" id="storyCarousel">
-                <div class="story-slides" id="storySlides" style="display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 40px 20px 20px; scroll-behavior: smooth;">
+            <div class="story-carousel" id="storyCarousel" style="max-height: 600px; overflow: hidden; position: relative;">
+                <div class="story-slides" id="storySlides" style="display: flex; transition: transform 0.5s ease; height: 500px;">
                     <!-- Slide 1: Hook -->
-                    <div class="story-slide" style="background: linear-gradient(135deg, #fcedeb, #fff7f2); padding: 40px 20px; border-radius: 20px;">
-                        <img src="./images/product/lava-pants-square.jpg" alt="Desert Road Set" style="max-width: 320px; border-radius: 16px; margin-bottom: 20px;">
+                    <div class="story-slide" style="background: linear-gradient(135deg, #fcedeb, #fff7f2); padding: 20px; border-radius: 20px; min-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <img src="./images/product/lava-pants-square.jpg" alt="Desert Road Set" style="max-width: 280px; width: 100%; height: 200px; object-fit: cover; border-radius: 16px; margin-bottom: 15px;">
                         <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">Stop Scrolling—This Will Change Your Night</h3>
                         <p style="font-size: 16px; line-height: 1.5; color: var(--text-dark);">This two-piece Desert Road set is rewriting the rules of chic. It's not denim, it's not another dress. It's everything you need to own the night.</p>
                     </div>
                     <!-- Slide 2: Future Pace -->
-                    <div class="story-slide" style="background: var(--bg-cream); padding: 40px 20px; border-radius: 20px;">
-                        <img src="./images/product/lava-top-square.jpg" alt="Imagine the attention" style="max-width: 320px; border-radius: 16px; margin-bottom: 20px;">
+                    <div class="story-slide" style="background: var(--bg-cream); padding: 20px; border-radius: 20px; min-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <img src="./images/product/lava-top-square.jpg" alt="Imagine the attention" style="max-width: 280px; width: 100%; height: 200px; object-fit: cover; border-radius: 16px; margin-bottom: 15px;">
                         <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">Imagine the Compliments</h3>
                         <p style="font-size: 16px; line-height: 1.5; color: var(--text-dark);">Picture yourself wearing satin that drapes like liquid gold. Heads turn, compliments flow, you feel like you unlocked your own runway.</p>
                     </div>
                     <!-- Slide 3: Credibility -->
-                    <div class="story-slide" style="background: var(--light-beige); padding: 40px 20px; border-radius: 20px;">
-                        <img src="./images/product/lava-pants-main.jpg" alt="Quality and craft" style="max-width: 320px; border-radius: 16px; margin-bottom: 20px;">
+                    <div class="story-slide" style="background: var(--light-beige); padding: 20px; border-radius: 20px; min-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <img src="./images/product/lava-pants-main.jpg" alt="Quality and craft" style="max-width: 280px; width: 100%; height: 200px; object-fit: cover; border-radius: 16px; margin-bottom: 15px;">
                         <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">Built on Trust & Craftsmanship</h3>
                         <p style="font-size: 16px; line-height: 1.5; color: var(--text-dark);">After selling out thousands worldwide, each Desert Road set is hand-cut, sewn per order, and ethically produced.</p>
                     </div>
                     <!-- Slide 4: New Category -->
-                    <div class="story-slide" style="background: var(--secondary-sand); padding: 40px 20px; border-radius: 20px;">
-                        <img src="./images/product/lava-top-main.jpg" alt="Two piece set" style="max-width: 320px; border-radius: 16px; margin-bottom: 20px;">
+                    <div class="story-slide" style="background: var(--secondary-sand); padding: 20px; border-radius: 20px; min-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <img src="./images/product/lava-top-main.jpg" alt="Two piece set" style="max-width: 280px; width: 100%; height: 200px; object-fit: cover; border-radius: 16px; margin-bottom: 15px;">
                         <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 16px; color: white;">A New Category of Outfit</h3>
                         <p style="font-size: 16px; line-height: 1.5; color: white;">Most outfits make you choose between comfort and glamour. This moves like silk and wears like pajamas.</p>
                     </div>
                     <!-- Slide 5: Secret 1 -->
-                    <div class="story-slide" style="background: linear-gradient(135deg, #e7e7ff, #f5f5ff); padding: 40px 20px; border-radius: 20px;">
-                        <img src="./images/product/lava-pants-square.jpg" alt="Luxe fabric" style="max-width: 320px; border-radius: 16px; margin-bottom: 20px;">
+                    <div class="story-slide" style="background: linear-gradient(135deg, #e7e7ff, #f5f5ff); padding: 20px; border-radius: 20px; min-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                        <img src="./images/product/lava-pants-square.jpg" alt="Luxe fabric" style="max-width: 280px; width: 100%; height: 200px; object-fit: cover; border-radius: 16px; margin-bottom: 15px;">
                         <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">Secret #1: Luxe Fabric</h3>
                         <p style="font-size: 16px; line-height: 1.5; color: var(--text-dark);">Our satin blend drapes like high couture yet breathes like your favourite tee. Luxury that fits your lifestyle.</p>
                     </div>
@@ -4001,12 +4144,12 @@
             </div>
             
             <div style="text-align: center; margin-top: 32px;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -4395,12 +4538,12 @@
             </section>
             
             <div style="text-align: center; margin-top: 40px;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -5037,12 +5180,12 @@
             </div>
             
             <div style="text-align: center; margin: 24px 0;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -5511,12 +5654,12 @@
             </div>
             
             <div style="text-align: center; margin: 24px 0;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -5541,12 +5684,12 @@
             </div>
             
             <div class="section-cta">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -5593,12 +5736,12 @@
             </div>
             
             <div style="text-align: center; margin-top: 32px;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -5675,12 +5818,12 @@
             <p style="text-align: center; margin-top: 24px; font-weight: 600;">You save money. Planet gets trees. Everyone wins.</p>
             
             <div style="text-align: center; margin-top: 32px;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -5704,12 +5847,12 @@
                 <p style="font-size: 18px; line-height: 1.8; color: #333; margin-bottom: 32px;">
                     not you getting the same fit for $29 while they're out here dropping €1,140 🤡 this is what we call being THAT girl. the one who just gets it. you literally won.
                 </p>
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -5758,12 +5901,12 @@
             </p>
             
             <div style="text-align: center; margin-top: 24px;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
@@ -5800,12 +5943,12 @@
             </div>
             
             <div style="text-align: center;">
-                <button class="buy-now-button primary" onclick="addToCart('order-now', 99)">
+                <button class="buy-now-button primary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(49);}">
                     <!-- ADAPTABLE: Price Points -->
                     <span class="button-price">ADD TO CART - <del style="opacity: 0.6;">€1,140</del> $49</span>
                     <span class="button-subtext">In-Stock: Ready to Ship</span>
                 </button>
-                <button class="buy-now-button secondary" onclick="addToCart('pre-order', 19)" style="margin-top: 12px;">
+                <button class="buy-now-button secondary" onclick="if(!window.selectedSize){showSizeSelectionPopup();}else{showSimpleSwapInstructions(19);}" style="margin-top: 12px;">
                     <!-- ADAPTABLE: Pre-order Price Points -->
                     <span class="button-price">ADD PRE-ORDER TO CART - <del style="opacity: 0.6;">€1,140</del> $19</span>
                     <span class="button-subtext">Wait & Save: Estimated to Ship Oct 23</span>
