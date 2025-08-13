@@ -2999,16 +2999,16 @@
                 <div style="position: absolute; top: 10px; right: 10px; background: white; padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                     📸 Swipe to See More
                 </div>
-                <div class="product-carousel" id="heroCarousel" style="position: relative; overflow: hidden; border-radius: 6px; background: #f5f5f5; max-height: 280px;">
-                    <div class="product-slides" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
-                        <img src="./images/product/lava-top-main.jpg" alt="Desert Road Top Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/lava-pants-main.jpg" alt="Desert Road Pants Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/top_square_center.jpg" alt="Desert Road Top Detail" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/pants_square_center.jpg" alt="Desert Road Pants Detail" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/top_img2.jpg" alt="Desert Road Top Style" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/pants_img2.jpg" alt="Desert Road Pants Style" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/top_img3.jpg" alt="Desert Road Top Close-up" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/pants_img3.jpg" alt="Desert Road Pants Close-up" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                <div class="product-carousel" id="heroCarousel" style="position: relative; overflow: hidden; border-radius: 6px; background: #f5f5f5; height: 350px;">
+                    <div class="product-slides" id="heroSlides" style="display: flex; transition: transform 0.3s ease; height: 100%;">
+                        <img src="./images/product/lava-top-main.jpg" alt="Desert Road Top Front" class="product-slide" style="min-width: 100%; width: 100%; flex-shrink: 0; object-fit: cover; height: 350px;">
+                        <img src="./images/product/lava-pants-main.jpg" alt="Desert Road Pants Front" class="product-slide" style="min-width: 100%; width: 100%; flex-shrink: 0; object-fit: cover; height: 350px;">
+                        <img src="./images/product/top_square_center.jpg" alt="Desert Road Top Detail" class="product-slide" style="min-width: 100%; width: 100%; flex-shrink: 0; object-fit: cover; height: 350px;">
+                        <img src="./images/product/pants_square_center.jpg" alt="Desert Road Pants Detail" class="product-slide" style="min-width: 100%; width: 100%; flex-shrink: 0; object-fit: cover; height: 350px;">
+                        <img src="./images/product/top_img2.jpg" alt="Desert Road Top Style" class="product-slide" style="min-width: 100%; width: 100%; flex-shrink: 0; object-fit: cover; height: 350px;">
+                        <img src="./images/product/pants_img2.jpg" alt="Desert Road Pants Style" class="product-slide" style="min-width: 100%; width: 100%; flex-shrink: 0; object-fit: cover; height: 350px;">
+                        <img src="./images/product/top_img3.jpg" alt="Desert Road Top Close-up" class="product-slide" style="min-width: 100%; width: 100%; flex-shrink: 0; object-fit: cover; height: 350px;">
+                        <img src="./images/product/pants_img3.jpg" alt="Desert Road Pants Close-up" class="product-slide" style="min-width: 100%; width: 100%; flex-shrink: 0; object-fit: cover; height: 350px;">
                     </div>
                     
                     <!-- ENHANCED MOBILE NAVIGATION -->
@@ -3321,19 +3321,27 @@
             function validateAndBuy(type) {
                 if (!selectedSize) {
                     // Shake the size selector
-                    document.querySelector('.size-grid').style.animation = 'shake 0.5s';
-                    document.getElementById('size-warning').style.animation = 'shake 0.5s';
+                    const sizeGrid = document.querySelector('.size-grid');
+                    const sizeWarning = document.getElementById('size-warning');
+                    if (sizeGrid) sizeGrid.style.animation = 'shake 0.5s';
+                    if (sizeWarning) sizeWarning.style.animation = 'shake 0.5s';
                     
                     // Scroll to size selector
-                    document.querySelector('.size-selector').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    const sizeSelector = document.querySelector('.size-selector');
+                    if (sizeSelector) {
+                        sizeSelector.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
                     
                     setTimeout(() => {
-                        document.querySelector('.size-grid').style.animation = '';
-                        document.getElementById('size-warning').style.animation = '';
+                        if (sizeGrid) sizeGrid.style.animation = '';
+                        if (sizeWarning) sizeWarning.style.animation = '';
                     }, 500);
                     
                     return;
                 }
+                
+                // Redirect to SimpleSwap with selected size
+                window.location.href = 'https://simpleswap.io/exchange?from=usd&to=btc&amount=29';
                 
                 // Store selected size in sessionStorage
                 sessionStorage.setItem('selectedSize', selectedSize);
@@ -3686,51 +3694,7 @@
             </div>
         </section>
         
-        <!-- CELEBRITY/INFLUENCER SOCIAL PROOF WALL -->
-        <section class="celebrity-wall">
-            <div class="container">
-                <h2 class="section-title" style="color: var(--dark-brown); margin-bottom: 10px;">Join The Elite Circle</h2>
-                <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; font-size: 16px;">
-                    Celebrities and influencers who understand the power of presence
-                </p>
-                
-                <div class="celebrity-grid">
-                    <div class="celebrity-item">
-                        <img src="./images/influencer-1.jpg" alt="Fashion Icon" style="background: linear-gradient(135deg, var(--primary-gold), var(--secondary-sand));">
-                        <div class="celebrity-name">@fashionista_nyc</div>
-                    </div>
-                    <div class="celebrity-item">
-                        <img src="./images/influencer-2.jpg" alt="Style Maven" style="background: linear-gradient(135deg, var(--secondary-sand), var(--accent-bronze));">
-                        <div class="celebrity-name">@luxurylifestyle</div>
-                    </div>
-                    <div class="celebrity-item">
-                        <img src="./images/influencer-3.jpg" alt="Trendsetter" style="background: linear-gradient(135deg, var(--accent-bronze), var(--primary-gold));">
-                        <div class="celebrity-name">@elitestyle</div>
-                    </div>
-                    <div class="celebrity-item">
-                        <img src="./images/influencer-4.jpg" alt="Fashion Forward" style="background: linear-gradient(135deg, var(--primary-gold), var(--light-beige));">
-                        <div class="celebrity-name">@hautecouture</div>
-                    </div>
-                    <div class="celebrity-item">
-                        <img src="./images/influencer-5.jpg" alt="Style Icon" style="background: linear-gradient(135deg, var(--light-beige), var(--secondary-sand));">
-                        <div class="celebrity-name">@milanfashion</div>
-                    </div>
-                    <div class="celebrity-item">
-                        <img src="./images/influencer-6.jpg" alt="Luxury Life" style="background: linear-gradient(135deg, var(--secondary-sand), var(--primary-gold));">
-                        <div class="celebrity-name">@parischic</div>
-                    </div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(212, 165, 116, 0.1); border-radius: 15px;">
-                    <p style="font-size: 18px; color: var(--dark-brown); font-weight: 600;">
-                        "The Desert Road Set isn't just clothing, it's a statement of arrival."
-                    </p>
-                    <p style="font-size: 14px; color: var(--text-light); margin-top: 10px;">
-                        - Featured in Vogue, Harper's Bazaar, Elle
-                    </p>
-                </div>
-            </div>
-        </section>
+        <!-- REMOVED ELITE CIRCLE SECTION - NO IMAGES AVAILABLE -->
 
         <!-- STORY CAROUSEL SECTION -->
         <section class="story-section">
@@ -3904,7 +3868,7 @@
                             real texts from girls wearing the set 📱
                         </h3>
                         
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
                             
                             <!-- Authentic iPhone 1 -->
                             <div style="background: #fff; border: 2px solid #e1e1e1; border-radius: 35px; padding: 12px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); max-width: 350px; margin: 0 auto; position: relative;">
@@ -5462,23 +5426,68 @@
             window.location.href = 'https://simpleswap.io/exchange?from=usd&to=btc&amount=29';
         }
         
-        // Enhanced Carousel Navigation Functions
+        // Countdown Timer Fix
+        function startCountdown() {
+            const countdownElements = document.querySelectorAll('.countdown-timer, #countdown, [class*="countdown"]');
+            
+            function updateCountdown() {
+                const now = new Date();
+                const endTime = new Date();
+                endTime.setHours(now.getHours() + 2);
+                endTime.setMinutes(now.getMinutes() + 47);
+                
+                const diff = endTime - now;
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                const timeString = `${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+                
+                countdownElements.forEach(el => {
+                    const hoursEl = el.querySelector('.hours, [class*="hours"]');
+                    const minsEl = el.querySelector('.minutes, [class*="minutes"]');
+                    const secsEl = el.querySelector('.seconds, [class*="seconds"]');
+                    
+                    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0') + 'h';
+                    if (minsEl) minsEl.textContent = String(minutes).padStart(2, '0') + 'm';
+                    if (secsEl) secsEl.textContent = String(seconds).padStart(2, '0') + 's';
+                });
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        
+        // Start countdown on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startCountdown);
+        } else {
+            startCountdown();
+        }
+        
+        // Enhanced Carousel Navigation Functions - FIXED
+        let carouselPositions = { heroCarousel: 0 };
+        
         function moveCarousel(carouselId, direction) {
             const carousel = document.getElementById(carouselId);
             if (!carousel) return;
             
-            const slides = carousel.querySelector('.product-slides');
-            const slideWidth = slides.children[0].offsetWidth;
-            const currentScroll = slides.scrollLeft;
-            const targetScroll = currentScroll + (slideWidth * direction);
+            const slides = carousel.querySelector('.product-slides, #heroSlides');
+            if (!slides) return;
             
-            slides.scrollTo({
-                left: targetScroll,
-                behavior: 'smooth'
-            });
+            const totalSlides = slides.children.length;
+            let currentPosition = carouselPositions[carouselId] || 0;
+            
+            // Update position
+            currentPosition += direction;
+            currentPosition = Math.max(0, Math.min(currentPosition, totalSlides - 1));
+            carouselPositions[carouselId] = currentPosition;
+            
+            // Apply transform
+            slides.style.transform = `translateX(-${currentPosition * 100}%)`;
             
             // Update dots
-            setTimeout(() => updateCarouselDots(carouselId), 300);
+            updateCarouselDots(carouselId, currentPosition);
         }
         
         function goToSlide(carouselId, slideIndex) {
