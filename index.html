@@ -503,6 +503,20 @@
             50% { transform: translateX(5px); opacity: 1; }
         }
         
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            10%, 90% { opacity: 1; }
+        }
+        
+        /* Hide scrollbar but keep functionality */
+        .product-slides::-webkit-scrollbar {
+            display: none;
+        }
+        .product-slides {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
         @media (max-width: 468px) {
             .social-badge {
                 font-size: 0.65rem;
@@ -2469,52 +2483,69 @@
     </script>
     <!-- COMPLETE NETLIFY BODY STRUCTURE WITH PAYMENT GATEWAY INTEGRATION -->
     
-    <div class="container">
-        <!-- ADAPTABLE: Product Drop Header -->
-        <div style="text-align: center; padding: 20px 0; background: #f8f8f8; margin-bottom: 20px; border-radius: 12px;">
-            <!-- ADAPTABLE: Drop Date and Urgency Message -->
-            <h2 style="font-size: 18px; font-weight: 700; color: #333; margin-bottom: 10px;">AUGUST 2025 DROP - FINAL CLEARANCE</h2>
-            <p style="font-size: 14px; color: #666; margin: 0;">The €1,140 set everyone wanted from our August 2025 drop. Most sizes sold out. We found 47 pieces in the warehouse. Your chance to get it for $29 before we donate the rest.</p>
-        </div>
-
-        <!-- HERO SECTION -->
-        <section class="hero" style="position: relative; overflow: hidden;">
-            <!-- Morphing Blob Animations -->
-            <div class="morphing-blob" style="top: -100px; left: -100px;"></div>
-            <div class="morphing-blob" style="bottom: -150px; right: -150px; animation-delay: 5s;"></div>
+    <!-- FIXED URGENCY BAR -->
+    <div style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(90deg, var(--primary-gold), var(--accent-bronze)); color: white; padding: 10px; text-align: center; z-index: 9999; font-size: 13px; font-weight: 600; display: flex; justify-content: center; align-items: center; gap: 15px;">
+        <span>🔥 Sophia (NYC) saved €1,111</span>
+        <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 15px;">Size 44 SOLD OUT</span>
+        <span style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 15px;">847 viewing now</span>
+    </div>
+    
+    <div class="container" style="padding-top: 45px;">
+        <!-- HERO SECTION - RUSSELL BRUNSON STYLE -->
+        <section class="hero" style="position: relative; overflow: hidden; padding: 30px 15px;">
             
-            <div class="social-badge float-animation">trending on tiktok</div>
-            
-            <!-- ADAPTABLE: Product Name and Tagline -->
-            <h1 class="main-headline gradient-text-animate">You Are Not<br>For Everyone</h1>
-            <!-- ADAPTABLE: Product Description and Social Proof -->
-            <p class="sub-headline">Designer Two-Piece Set - No Waist Gap, True To Size, Opacity Tested<br><strong>Limited Edition Desert Road Collection</strong></p>
-            
-            <!-- Command Prompt Status -->
-            <div class="command-prompt" style="max-width: 600px; margin: 20px auto;">
-                <span class="typing-text" id="command-text">ORIGINAL: €1,140 (€490 TOP + €650 PANTS)... CURRENT: $29... SAVINGS: €1,111 (97% OFF)...</span>
+            <!-- HOOK: CLEAR VALUE PROPOSITION -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div class="social-badge" style="margin-bottom: 12px;">VIRAL ON TIKTOK</div>
+                <h1 style="font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; color: var(--text-dark);">
+                    €1,140 Designer Set<br>
+                    <span style="color: var(--primary-gold);">Now Only $29</span>
+                </h1>
+                <p style="font-size: 16px; color: var(--text-light); margin-bottom: 16px;">
+                    The Lava Two-Piece That Sold Out in 72 Hours
+                </p>
+                
+                <!-- PRICE ANCHOR - FRONT AND CENTER -->
+                <div style="background: linear-gradient(135deg, #fff, var(--bg-cream)); border: 2px solid var(--primary-gold); border-radius: 12px; padding: 12px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+                        <div>
+                            <span style="font-size: 14px; color: var(--text-light); text-decoration: line-through;">€1,140</span>
+                        </div>
+                        <div style="font-size: 32px; font-weight: 800; color: var(--primary-gold);">$29</div>
+                        <div style="background: #ff4444; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 700;">
+                            97% OFF
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: var(--text-light); margin-top: 8px; margin-bottom: 0;">
+                        💳 Save €1,111 Today Only
+                    </p>
+                </div>
             </div>
             
             <div class="product-display" style="position: relative;">
-                <!-- Multiple Product Images Carousel -->
-                <div class="product-carousel" style="position: relative; overflow: hidden; border-radius: 12px;">
-                    <div class="product-slides" style="display: flex; transition: transform 0.3s ease; touch-action: pan-y;">
-                        <img src="./images/product/lava-top-main.jpg" alt="Lava Top Front" class="product-slide" style="min-width: 100%; width: 100%;">
-                        <img src="./images/product/lava-pants-main.jpg" alt="Lava Pants Front" class="product-slide" style="min-width: 100%; width: 100%;">
-                        <img src="./images/product/lava-top-square.jpg" alt="Lava Top Detail" class="product-slide" style="min-width: 100%; width: 100%;">
-                        <img src="./images/product/lava-pants-square.jpg" alt="Lava Pants Detail" class="product-slide" style="min-width: 100%; width: 100%;">
-                        <img src="./images/product/top_img2.jpg" alt="Lava Top Square" class="product-slide" style="min-width: 100%; width: 100%;">
-                        <img src="./images/product/pants_img2.jpg" alt="Lava Pants Square" class="product-slide" style="min-width: 100%; width: 100%;">
+                <!-- Multiple Product Images Carousel - MOBILE OPTIMIZED -->
+                <div class="product-carousel" style="position: relative; overflow: hidden; border-radius: 12px; background: #f5f5f5;">
+                    <div class="product-slides" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
+                        <img src="./images/product/lava-top-main.jpg" alt="Lava Top Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover;">
+                        <img src="./images/product/lava-pants-main.jpg" alt="Lava Pants Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover;">
+                        <img src="./images/product/lava-top-square.jpg" alt="Lava Top Detail" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover;">
+                        <img src="./images/product/lava-pants-square.jpg" alt="Lava Pants Detail" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover;">
+                        <img src="./images/product/top_img2.jpg" alt="Lava Top Square" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover;">
+                        <img src="./images/product/pants_img2.jpg" alt="Lava Pants Square" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover;">
+                    </div>
+                    <!-- Swipe Indicator -->
+                    <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 6px 12px; border-radius: 20px; font-size: 12px; animation: fadeInOut 3s ease-in-out infinite;">
+                        ← Swipe for more →
                     </div>
                     <div class="carousel-dots" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10;">
-                        <span class="dot active" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 1; cursor: pointer;"></span>
-                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.5; cursor: pointer;"></span>
-                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.5; cursor: pointer;"></span>
-                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.5; cursor: pointer;"></span>
-                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.5; cursor: pointer;"></span>
-                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.5; cursor: pointer;"></span>
+                        <span class="dot active" style="width: 10px; height: 10px; border-radius: 50%; background: var(--primary-gold); cursor: pointer; transition: all 0.3s;"></span>
+                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.6; cursor: pointer; transition: all 0.3s;"></span>
+                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.6; cursor: pointer; transition: all 0.3s;"></span>
+                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.6; cursor: pointer; transition: all 0.3s;"></span>
+                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.6; cursor: pointer; transition: all 0.3s;"></span>
+                        <span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.6; cursor: pointer; transition: all 0.3s;"></span>
                     </div>
-                    <div class="price-badge" style="position: absolute; top: 20px; right: 20px; z-index: 10;">LIMITED OFFER</div>
+                    <div class="price-badge" style="position: absolute; top: 20px; right: 20px; z-index: 10; background: var(--primary-gold); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 12px;">LIMITED OFFER</div>
                 </div>
             </div>
 
@@ -2629,25 +2660,25 @@
             </div>
             
             <div class="size-grid">
-                <div class="size-option sold-out" data-size="34">
+                <div class="size-option available" data-size="34" onclick="selectSize('34')">
                     <span class="size-label">34</span>
-                    <span class="size-status">Sold Out</span>
+                    <span class="size-status">2 left</span>
                 </div>
                 <div class="size-option available" data-size="36" onclick="selectSize('36')">
                     <span class="size-label">36</span>
-                    <span class="size-status">3 left</span>
+                    <span class="size-status">8 left</span>
                 </div>
                 <div class="size-option available" data-size="38" onclick="selectSize('38')">
                     <span class="size-label">38</span>
-                    <span class="size-status" style="color: #ff6b6b;">2 left!</span>
+                    <span class="size-status" style="color: var(--primary-gold);">12 left</span>
                 </div>
                 <div class="size-option available" data-size="40" onclick="selectSize('40')">
                     <span class="size-label">40</span>
-                    <span class="size-status" style="color: #ff6b6b;">1 left!</span>
+                    <span class="size-status" style="color: var(--primary-gold);">10 left</span>
                 </div>
                 <div class="size-option available" data-size="42" onclick="selectSize('42')">
                     <span class="size-label">42</span>
-                    <span class="size-status">5 left</span>
+                    <span class="size-status">3 left</span>
                 </div>
                 <div class="size-option sold-out" data-size="44">
                     <span class="size-label">44</span>
