@@ -2603,7 +2603,7 @@
         
         <!-- Main CTA - Above the fold -->
         <div class="mobile-cta-section">
-            <button class="mobile-main-cta" onclick="showCheckoutPopup()">
+            <button class="mobile-main-cta" onclick="window.location.href='https://simpleswap.io/exchange?from=usd&to=btc&amount=29'">
                 GET MY SET → $29
             </button>
             <p style="font-size: 11px; text-align: center; margin-top: 8px; color: var(--text-light);">
@@ -2772,7 +2772,14 @@
                 </div>
             `;
             
-            document.getElementById('purchase-notifications').appendChild(notification);
+            // Create container if it doesn't exist
+            let container = document.getElementById('purchase-notifications');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'purchase-notifications';
+                document.body.appendChild(container);
+            }
+            container.appendChild(notification);
             
             setTimeout(() => {
                 notification.remove();
@@ -2986,20 +2993,22 @@
                 </div>
             </div>
             
-            <!-- STORY: PRODUCTS WITH 360 VIEW INDICATOR -->
+            <!-- STORY: PRODUCTS IMAGE GALLERY -->
             <div class="product-display" style="position: relative; margin-bottom: 10px;">
-                <!-- 360 View Badge -->
+                <!-- Gallery Badge -->
                 <div style="position: absolute; top: 10px; right: 10px; background: white; padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                    🔄 Swipe for 360° View
+                    📸 Swipe to See More
                 </div>
                 <div class="product-carousel" id="heroCarousel" style="position: relative; overflow: hidden; border-radius: 6px; background: #f5f5f5; max-height: 280px;">
                     <div class="product-slides" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
-                        <img src="./images/product/lava-top-main.jpg" alt="Lava Top Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/lava-pants-main.jpg" alt="Lava Pants Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/lava-top-square.jpg" alt="Lava Top Detail" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/lava-pants-square.jpg" alt="Lava Pants Detail" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/top_img2.jpg" alt="Lava Top Square" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/pants_img2.jpg" alt="Lava Pants Square" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/lava-top-main.jpg" alt="Desert Road Top Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/lava-pants-main.jpg" alt="Desert Road Pants Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/top_square_center.jpg" alt="Desert Road Top Detail" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/pants_square_center.jpg" alt="Desert Road Pants Detail" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/top_img2.jpg" alt="Desert Road Top Style" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/pants_img2.jpg" alt="Desert Road Pants Style" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/top_img3.jpg" alt="Desert Road Top Close-up" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/pants_img3.jpg" alt="Desert Road Pants Close-up" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
                     </div>
                     
                     <!-- ENHANCED MOBILE NAVIGATION -->
@@ -5256,7 +5265,7 @@
                             📋 Copy Wallet Address
                         </button>
                         <br>
-                        <button onclick="showCheckoutPopup()" style="background: #4fc3f7; color: white; border: none; border-radius: 50px; padding: 16px 32px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 195, 247, 0.3); min-width: 280px;">
+                        <button onclick="window.location.href='https://simpleswap.io/exchange?from=usd&to=btc&amount=29'" style="background: #4fc3f7; color: white; border: none; border-radius: 50px; padding: 16px 32px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 195, 247, 0.3); min-width: 280px;">
                             View Checkout Instructions
                         </button>
                     </div>
@@ -5272,7 +5281,7 @@
                         Complete Your Exchange
                     </h3>
                     
-                    <button onclick="showCheckoutPopup()" id="finalPaymentButton" class="simpleswap-link-button" style="width: 100%; max-width: 300px; padding: 16px 32px; font-size: 18px; font-weight: 700; background: #2196f3; color: white; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 16px;">
+                    <button onclick="window.location.href='https://simpleswap.io/exchange?from=usd&to=btc&amount=29'" id="finalPaymentButton" class="simpleswap-link-button" style="width: 100%; max-width: 300px; padding: 16px 32px; font-size: 18px; font-weight: 700; background: #2196f3; color: white; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 16px;">
                         Buy Now
                     </button>
                     
@@ -5328,7 +5337,7 @@
                     </div>
                     
                     <div style="margin-top: 32px;">
-                        <button onclick="showCheckoutPopup()" class="buy-now-button" style="width: 100%; max-width: 400px;">
+                        <button onclick="window.location.href='https://simpleswap.io/exchange?from=usd&to=btc&amount=29'" class="buy-now-button" style="width: 100%; max-width: 400px;">
                             Start My Eco-Checkout - $29
                         </button>
                     </div>
@@ -6937,7 +6946,152 @@
         }
         
         // Initialize on DOM load
-        document.addEventListener('DOMContentLoaded', initializeEnhancedCarousels);
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEnhancedCarousels();
+            initializeAllCarousels();
+        });
+
+        // Complete Carousel Fix - Make ALL carousels work properly
+        function initializeAllCarousels() {
+            console.log('🚀 Initializing all carousels with complete functionality');
+            
+            // Hero Product Carousel
+            const heroCarousel = document.getElementById('heroCarousel');
+            if (heroCarousel) {
+                const slides = heroCarousel.querySelector('.product-slides');
+                const prevBtn = document.querySelector('#heroCarousel').parentElement.querySelector('.carousel-nav.prev');
+                const nextBtn = document.querySelector('#heroCarousel').parentElement.querySelector('.carousel-nav.next');
+                const dots = document.querySelectorAll('#heroCarousel').parentElement.querySelectorAll('.dot');
+                let currentSlide = 0;
+                
+                function updateHeroCarousel() {
+                    const slideWidth = slides.children[0].offsetWidth;
+                    slides.scrollLeft = currentSlide * slideWidth;
+                    
+                    // Update dots
+                    dots.forEach((dot, index) => {
+                        if (index === currentSlide) {
+                            dot.style.background = 'var(--primary-gold)';
+                            dot.style.width = '10px';
+                            dot.style.height = '10px';
+                            dot.style.opacity = '1';
+                        } else {
+                            dot.style.background = 'white';
+                            dot.style.width = '8px';
+                            dot.style.height = '8px';
+                            dot.style.opacity = '0.6';
+                        }
+                    });
+                }
+                
+                // Previous button
+                if (prevBtn) {
+                    prevBtn.onclick = function() {
+                        currentSlide = Math.max(0, currentSlide - 1);
+                        updateHeroCarousel();
+                    };
+                }
+                
+                // Next button
+                if (nextBtn) {
+                    nextBtn.onclick = function() {
+                        currentSlide = Math.min(slides.children.length - 1, currentSlide + 1);
+                        updateHeroCarousel();
+                    };
+                }
+                
+                // Dot navigation
+                dots.forEach((dot, index) => {
+                    dot.onclick = function() {
+                        currentSlide = index;
+                        updateHeroCarousel();
+                    };
+                });
+                
+                // Touch/swipe support
+                let startX = 0;
+                let isDragging = false;
+                
+                slides.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                });
+                
+                slides.addEventListener('touchend', (e) => {
+                    if (!isDragging) return;
+                    const endX = e.changedTouches[0].clientX;
+                    const diff = startX - endX;
+                    
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            // Swipe left - next slide
+                            currentSlide = Math.min(slides.children.length - 1, currentSlide + 1);
+                        } else {
+                            // Swipe right - previous slide
+                            currentSlide = Math.max(0, currentSlide - 1);
+                        }
+                        updateHeroCarousel();
+                    }
+                    isDragging = false;
+                });
+            }
+            
+            // Fix TikTok and Trustpilot carousels
+            const carousels = [
+                { containerId: 'tiktokCarousel', slidesId: 'tiktokSlides', prevBtnId: 'tiktokPrevBtn', nextBtnId: 'tiktokNextBtn' },
+                { containerId: 'trustpilotCarousel', slidesId: 'trustpilotSlides', prevBtnId: 'trustpilotPrevBtn', nextBtnId: 'trustpilotNextBtn' },
+                { containerId: 'storyCarousel', slidesId: 'storySlides', prevBtnId: 'storyPrevBtn', nextBtnId: 'storyNextBtn' }
+            ];
+            
+            carousels.forEach(({ containerId, slidesId, prevBtnId, nextBtnId }) => {
+                const container = document.getElementById(containerId);
+                const slides = document.getElementById(slidesId);
+                const prevBtn = document.getElementById(prevBtnId);
+                const nextBtn = document.getElementById(nextBtnId);
+                
+                if (container && slides && prevBtn && nextBtn) {
+                    let scrollPosition = 0;
+                    const slideWidth = 370; // Approximate width of each slide
+                    
+                    prevBtn.onclick = function() {
+                        scrollPosition = Math.max(0, scrollPosition - slideWidth);
+                        slides.scrollTo({
+                            left: scrollPosition,
+                            behavior: 'smooth'
+                        });
+                    };
+                    
+                    nextBtn.onclick = function() {
+                        const maxScroll = slides.scrollWidth - slides.clientWidth;
+                        scrollPosition = Math.min(maxScroll, scrollPosition + slideWidth);
+                        slides.scrollTo({
+                            left: scrollPosition,
+                            behavior: 'smooth'
+                        });
+                    };
+                    
+                    // Add touch support
+                    let startX = 0;
+                    
+                    slides.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                    });
+                    
+                    slides.addEventListener('touchend', (e) => {
+                        const endX = e.changedTouches[0].clientX;
+                        const diff = startX - endX;
+                        
+                        if (Math.abs(diff) > 50) {
+                            if (diff > 0) {
+                                nextBtn.click();
+                            } else {
+                                prevBtn.click();
+                            }
+                        }
+                    });
+                }
+            });
+        }
 
         // 15-Second Size Sold Out Popup
         setTimeout(function() {
