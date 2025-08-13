@@ -5,6 +5,12 @@
     <!-- Version 5.0 - COMPLETE CORRECTED INTEGRATION FROM symphonious-genie-6a7d15.netlify.app -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Preconnect for faster resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="./images/product/lava-top-square.jpg">
+    <link rel="preload" as="image" href="./images/product/lava-top-main.jpg">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -800,6 +806,11 @@
         @keyframes fadeInOut {
             0%, 100% { opacity: 0; }
             10%, 90% { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
         
         /* Hide scrollbar but keep functionality */
@@ -2587,15 +2598,7 @@
         
         <!-- Size Selector -->
         <div style="margin: 10px 0;">
-            <p style="font-size: 12px; margin-bottom: 8px; color: var(--text-dark);">Select Your Size:</p>
-            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px;">
-                <button class="size-option mobile-size" data-size="34" style="padding: 10px; border: 1px solid #ddd; background: white; border-radius: 5px; font-size: 12px;">34</button>
-                <button class="size-option mobile-size" data-size="36" style="padding: 10px; border: 1px solid #ddd; background: white; border-radius: 5px; font-size: 12px;">36</button>
-                <button class="size-option mobile-size" data-size="38" style="padding: 10px; border: 1px solid #ddd; background: white; border-radius: 5px; font-size: 12px;">38</button>
-                <button class="size-option mobile-size" data-size="40" style="padding: 10px; border: 1px solid #ddd; background: white; border-radius: 5px; font-size: 12px;">40</button>
-                <button class="size-option mobile-size" data-size="42" style="padding: 10px; border: 1px solid #ddd; background: white; border-radius: 5px; font-size: 12px;">42</button>
-                <button class="size-option mobile-size" data-size="44" style="padding: 10px; border: 1px solid #ddd; background: white; border-radius: 5px; font-size: 12px;">44</button>
-            </div>
+            <!-- Mobile size selector removed to avoid duplication -->
         </div>
         
         <!-- Main CTA - Above the fold -->
@@ -2993,10 +2996,10 @@
                     <div class="product-slides" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
                         <img src="./images/product/lava-top-main.jpg" alt="Lava Top Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
                         <img src="./images/product/lava-pants-main.jpg" alt="Lava Pants Front" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/lava-top-square.jpg" alt="Lava Top Detail" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/lava-pants-square.jpg" alt="Lava Pants Detail" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/top_img2.jpg" alt="Lava Top Square" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
-                        <img src="./images/product/pants_img2.jpg" alt="Lava Pants Square" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/lava-top-square.jpg" alt="Lava Top Detail" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/lava-pants-square.jpg" alt="Lava Pants Detail" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/top_img2.jpg" alt="Lava Top Square" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
+                        <img src="./images/product/pants_img2.jpg" alt="Lava Pants Square" loading="lazy" class="product-slide" style="min-width: 100%; width: 100%; scroll-snap-align: start; object-fit: cover; height: 280px;">
                     </div>
                     
                     <!-- ENHANCED MOBILE NAVIGATION -->
@@ -6935,6 +6938,52 @@
         
         // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', initializeEnhancedCarousels);
+
+        // 15-Second Size Sold Out Popup
+        setTimeout(function() {
+            const popup = document.createElement('div');
+            popup.id = 'sizePopup';
+            popup.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #D4A574, #8B6F47);
+                color: white;
+                padding: 30px 25px;
+                border-radius: 15px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+                z-index: 100000;
+                max-width: 320px;
+                width: 90%;
+                text-align: center;
+                animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            `;
+            
+            popup.innerHTML = `
+                <div style="position: relative;">
+                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: -20px; right: -15px; background: white; color: #8B6F47; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">×</button>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px; margin-bottom: 15px;">
+                        <h3 style="margin: 0 0 10px 0; font-size: 20px; font-weight: 700; text-transform: uppercase;">🔥 ONLY 12 SPOTS LEFT</h3>
+                        <p style="margin: 0; font-size: 14px; opacity: 0.95;">Size 38 & 40 almost gone • Sophie just got hers 2 min ago</p>
+                    </div>
+                    <div style="font-size: 16px; margin-bottom: 15px; font-weight: 600;">
+                        The question isn't IF you want it.<br>
+                        The question is: Will you get it before they do?
+                    </div>
+                    <button onclick="document.getElementById('sizePopup').remove(); window.scrollTo({top: document.querySelector('.size-options')?.offsetTop || 0, behavior: 'smooth'});" style="background: white; color: #8B6F47; border: none; padding: 12px 25px; border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer; width: 100%; text-transform: uppercase;">YES, I WANT MY €1,111 DISCOUNT!</button>
+                </div>
+            `;
+            
+            document.body.appendChild(popup);
+            
+            // Auto-close after 10 seconds
+            setTimeout(() => {
+                if (document.getElementById('sizePopup')) {
+                    document.getElementById('sizePopup').remove();
+                }
+            }, 10000);
+        }, 15000); // Show after 15 seconds
 
         // Command Prompt Text Cycling
         const commandTexts = [
