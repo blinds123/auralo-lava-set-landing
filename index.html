@@ -2378,36 +2378,6 @@
         </button>
     </div>
     
-    <!-- Live Chat Bubble -->
-    <div id="chat-bubble" style="position: fixed; bottom: 20px; right: 20px; z-index: 9997;">
-        <div style="position: relative;">
-            <button onclick="toggleChat()" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze)); border: none; color: white; font-size: 24px; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.2); animation: pulse 2s infinite;">
-                💬
-            </button>
-            <div style="position: absolute; top: -5px; right: -5px; width: 20px; height: 20px; background: var(--primary-gold); border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white;">
-                1
-            </div>
-        </div>
-        
-        <div id="chat-window" style="position: absolute; bottom: 70px; right: 0; width: 300px; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: none; overflow: hidden;">
-            <div style="background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze)); color: white; padding: 16px;">
-                <div style="font-weight: 700;">Live Support</div>
-                <div style="font-size: 12px; opacity: 0.9;">Typically replies in under 2 min</div>
-            </div>
-            <div style="padding: 16px;">
-                <div style="background: #f8f9fa; border-radius: 12px; padding: 12px; margin-bottom: 12px;">
-                    <div style="font-size: 12px; color: #666; margin-bottom: 4px;">Sarah from Auralo</div>
-                    <div>Hi! 👋 I see you're checking out our Lava Set. The size 38 is selling fast - only 2 left! Need help with sizing?</div>
-                </div>
-                <button onclick="document.getElementById('size-guide').scrollIntoView({ behavior: 'smooth' })" style="width: 100%; background: #f8f9fa; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px; cursor: pointer; margin-bottom: 8px;">
-                    📏 View Size Guide
-                </button>
-                <button onclick="scrollToSizeSelector()" style="width: 100%; background: var(--primary-gold); color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer;">
-                    Select Size Now
-                </button>
-            </div>
-        </div>
-    </div>
     
     <!-- REMOVE ALL DISTRACTING ELEMENTS - MOVED TO BOTTOM -->
     
@@ -2539,14 +2509,8 @@
             }
         });
         
-        // Chat toggle
-        function toggleChat() {
-            const chatWindow = document.getElementById('chat-window');
-            chatWindow.style.display = chatWindow.style.display === 'none' ? 'block' : 'none';
-        }
         
-        // Exit intent popup
-        let exitIntentShown = false;
+        // Exit intent popup (using existing variable)
         document.addEventListener('mouseleave', (e) => {
             if (e.clientY <= 0 && !exitIntentShown) {
                 exitIntentShown = true;
