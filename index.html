@@ -16,7 +16,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Desert Road Set - €1,140 for $29 | Mobile Optimized</title>
     <!-- PERFORMANCE OPTIMIZATIONS -->
-    <link rel="preload" href="./images/product/main-product.jpg" as="image">
+    <link rel="preload" href="./images/product/lava-pants-main.jpg" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -26,8 +26,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
     <!-- Resource Hints -->
-    <link rel="prefetch" href="./images/slide-1_final_crushed_under_20kb.jpg">
-    <link rel="prefetch" href="./images/slide-2_final_crushed_under_20kb.jpg">
+    <link rel="prefetch" href="./images/story/slide-1_final_crushed_under_20kb.jpg">
+    <link rel="prefetch" href="./images/story/slide-2_final_crushed_under_20kb.jpg">
     
     <!-- COMPLETE CSS FROM NETLIFY SOURCE WITH PAYMENT GATEWAY INTEGRATION -->
     <style>
@@ -1426,8 +1426,8 @@
 
         .morning-bg {
             background: 
-                url('./images/morning1_optimized.jpg'),
-                url('./images/bvtryhy_optimized.jpg'),
+                url('./images/product/morning1_optimized.jpg'),
+                url('./images/product/bvtryhy_optimized.jpg'),
                 linear-gradient(rgba(245, 235, 220, 0.1), rgba(245, 235, 220, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 20% 30%, 80% 70%, center;
@@ -1438,8 +1438,8 @@
 
         .study-bg {
             background: 
-                url('./images/morning2_optimized.jpg'),
-                url('./images/fvcf_optimized.jpg'),
+                url('./images/product/morning2_optimized.jpg'),
+                url('./images/product/fvcf_optimized.jpg'),
                 linear-gradient(rgba(235, 230, 215, 0.1), rgba(235, 230, 215, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 20% 25%, 80% 75%, center;
@@ -1450,8 +1450,8 @@
 
         .night-bg {
             background: 
-                url('./images/fggt5cvhj_optimized.jpg'),
-                url('./images/vcvjjr_optimized.jpg'),
+                url('./images/product/fggt5cvhj_optimized.jpg'),
+                url('./images/product/vcvjjr_optimized.jpg'),
                 linear-gradient(rgba(30, 26, 22, 0.1), rgba(30, 26, 22, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 25% 30%, 75% 70%, center;
@@ -1462,8 +1462,8 @@
 
         .lifestyle-bg {
             background: 
-                url('./images/morning1_optimized.jpg'),
-                url('./images/morning2_optimized.jpg'),
+                url('./images/product/morning1_optimized.jpg'),
+                url('./images/product/morning2_optimized.jpg'),
                 linear-gradient(rgba(240, 238, 235, 0.1), rgba(240, 238, 235, 0.1));
             background-size: 160px 120px, 160px 120px, cover;
             background-position: 30% 25%, 70% 75%, center;
@@ -3339,13 +3339,14 @@
                 slides.style.transform = `translateX(-${position * 100}%)`;
                 
                 // Update dots if they exist
-                const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
+                const carouselParent = carousel.parentElement;
+                const dots = carouselParent ? carouselParent.querySelectorAll('.carousel-dot') : [];
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === position);
                 });
                 
                 // Update counter if exists
-                const counter = carousel.parentElement.querySelector('.carousel-counter');
+                const counter = carouselParent ? carouselParent.querySelector('.carousel-counter') : null;
                 if (counter) {
                     counter.textContent = `${String(position + 1).padStart(2, '0')}/${String(totalSlides).padStart(2, '0')}`;
                 }
@@ -3461,6 +3462,16 @@
                 style.textContent = '@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }';
                 document.head.appendChild(style);
             }
+            
+            // Attach functions to window scope for global access
+            window.goToSimpleSwap = goToSimpleSwap;
+            window.showSimpleSwapInstructions = showSimpleSwapInstructions;
+            window.showSizeSelectionPopup = showSizeSelectionPopup;
+            window.selectSizeAndProceed = selectSizeAndProceed;
+            window.closeSizePopup = closeSizePopup;
+            window.moveCarousel = moveCarousel;
+            window.scrollToSizeSelector = scrollToSizeSelector;
+            window.selectSize = selectSize;
             
             // 15-Second Urgency Popup
             window.addEventListener('load', function() {
@@ -7752,12 +7763,14 @@
             const heroCarousel = document.getElementById('heroCarousel');
             if (heroCarousel) {
                 const slides = heroCarousel.querySelector('.product-slides');
-                const prevBtn = document.querySelector('#heroCarousel').parentElement.querySelector('.carousel-nav.prev');
-                const nextBtn = document.querySelector('#heroCarousel').parentElement.querySelector('.carousel-nav.next');
-                const dots = document.querySelectorAll('#heroCarousel').parentElement.querySelectorAll('.dot');
+                const heroParent = heroCarousel.parentElement;
+                const prevBtn = heroParent ? heroParent.querySelector('.carousel-nav.prev') : null;
+                const nextBtn = heroParent ? heroParent.querySelector('.carousel-nav.next') : null;
+                const dots = heroParent ? heroParent.querySelectorAll('.dot') : [];
                 let currentSlide = 0;
                 
                 function updateHeroCarousel() {
+                    if (!slides || !slides.children || slides.children.length === 0) return;
                     const slideWidth = slides.children[0].offsetWidth;
                     slides.scrollLeft = currentSlide * slideWidth;
                     
@@ -7788,8 +7801,10 @@
                 // Next button
                 if (nextBtn) {
                     nextBtn.onclick = function() {
-                        currentSlide = Math.min(slides.children.length - 1, currentSlide + 1);
-                        updateHeroCarousel();
+                        if (slides && slides.children && slides.children.length > 0) {
+                            currentSlide = Math.min(slides.children.length - 1, currentSlide + 1);
+                            updateHeroCarousel();
+                        }
                     };
                 }
                 
@@ -7802,31 +7817,33 @@
                 });
                 
                 // Touch/swipe support
-                let startX = 0;
-                let isDragging = false;
-                
-                slides.addEventListener('touchstart', (e) => {
-                    startX = e.touches[0].clientX;
-                    isDragging = true;
-                });
-                
-                slides.addEventListener('touchend', (e) => {
-                    if (!isDragging) return;
-                    const endX = e.changedTouches[0].clientX;
-                    const diff = startX - endX;
+                if (slides) {
+                    let startX = 0;
+                    let isDragging = false;
                     
-                    if (Math.abs(diff) > 50) {
-                        if (diff > 0) {
-                            // Swipe left - next slide
-                            currentSlide = Math.min(slides.children.length - 1, currentSlide + 1);
-                        } else {
-                            // Swipe right - previous slide
-                            currentSlide = Math.max(0, currentSlide - 1);
+                    slides.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                        isDragging = true;
+                    });
+                    
+                    slides.addEventListener('touchend', (e) => {
+                        if (!isDragging) return;
+                        const endX = e.changedTouches[0].clientX;
+                        const diff = startX - endX;
+                        
+                        if (Math.abs(diff) > 50 && slides.children && slides.children.length > 0) {
+                            if (diff > 0) {
+                                // Swipe left - next slide
+                                currentSlide = Math.min(slides.children.length - 1, currentSlide + 1);
+                            } else {
+                                // Swipe right - previous slide
+                                currentSlide = Math.max(0, currentSlide - 1);
+                            }
+                            updateHeroCarousel();
                         }
-                        updateHeroCarousel();
-                    }
-                    isDragging = false;
-                });
+                        isDragging = false;
+                    });
+                }
             }
             
             // Fix TikTok and Trustpilot carousels
@@ -8140,6 +8157,11 @@
         function showSizeGuide() {
             alert('Size Guide:\n\nEU 34 = US 2 = UK 6\nEU 36 = US 4 = UK 8\nEU 38 = US 6 = UK 10\nEU 40 = US 8 = UK 12\nEU 42 = US 10 = UK 14\nEU 44 = US 12 = UK 16\n\nModel is 5\'9" (175cm) wearing size 36');
         }
+        
+        // Attach additional functions to window scope for global access
+        window.closeExitPopup = closeExitPopup;
+        window.acceptExitOffer = acceptExitOffer;
+        window.showSizeGuide = showSizeGuide;
     </script>
 </body>
 </html><!-- Build: Wed 13 Aug 2025 20:43:10 AEST -->

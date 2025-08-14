@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Test</title>
+</head>
+<body>
+    <button onclick="console.log('Testing goToSimpleSwap:', typeof window.goToSimpleSwap)">Test goToSimpleSwap</button>
+    <button onclick="console.log('Testing showSimpleSwapInstructions:', typeof window.showSimpleSwapInstructions)">Test showSimpleSwapInstructions</button>
+    <button onclick="console.log('Testing showSizeSelectionPopup:', typeof window.showSizeSelectionPopup)">Test showSizeSelectionPopup</button>
+    <button onclick="console.log('Testing moveCarousel:', typeof window.moveCarousel)">Test moveCarousel</button>
+    
+    <div id="console-output"></div>
+    
+    <script>
+        // Check if index.html functions would be available by loading them
+        function checkFunctionAvailability() {
+            const functions = [
+                'goToSimpleSwap',
+                'showSimpleSwapInstructions', 
+                'showSizeSelectionPopup',
+                'selectSizeAndProceed',
+                'closeSizePopup',
+                'moveCarousel',
+                'scrollToSizeSelector',
+                'selectSize',
+                'closeExitPopup',
+                'acceptExitOffer',
+                'showSizeGuide'
+            ];
+            
+            console.log('=== Function Availability Test ===');
+            functions.forEach(funcName => {
+                const isAvailable = typeof window[funcName] === 'function';
+                console.log(`${funcName}: ${isAvailable ? '✅ Available' : '❌ Missing'}`);
+            });
+        }
+        
+        // Test on page load
+        window.addEventListener('load', checkFunctionAvailability);
+    </script>
+</body>
+</html>
